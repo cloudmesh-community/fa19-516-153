@@ -24,11 +24,29 @@ Many of the actual details and blueprints regarding the development are classifi
 
 ----
 ## E.Datacenter.4
+### Thermal Energy
+Geothermal energy is used pretty rarely in data centers, but many data centers that use geothermal energy end up with a LEED (Leadership in Energy and Environmental Design) platinum certification.    
 
+An example of a unique geothermal use is the American College Testing in Iowa, which doesn't use geothermal energy, but instead thermal cooling in order to remove waste heat from the servers.  Many sources involved with the project identified it as one designed for sustainability.  
+
+Another example of this type of geothermal cooling is present in Prairie Bunkers, a 760-acre data center in Nebraska with geo-thermal cooling.  It, however is especially unique as it is one of the first projects designed in a nuke-proof data bunkers. 
+
+
+*References*  
+[Geothermal Data Centers](https://www.datacenterknowledge.com/geothermal-data-centers)
 
 ----
 ## E.Datacenter.5
+### Google's Renewable Energy Efforts
+Google is making a large effort to introduce and upgrade their renewable energy sources in order to cut their environmental impacts.  They have invested upwards of $3 billion in their renewable energy projects and plan to grow the industry in a renewable manner.  One particular way that this has been implemented is using a PPA (Power Purchase Agreement) with clean energy producers in the region of their data centers.  Google's successes with this project include their milestone in 2017, reaching 100% renewable energy to match their consumption by data centers.
 
+*References*  
+[Google Data Centers Renewable Energy Report](https://www.google.com/about/datacenters/renewable/)
 
 -----
 ## E.Datacenter.8
+### Azure Data Center Outage
+In 2018, a lightning strike caused over 40 data center services to go down in the South-Central region of the US.  Luckily, this outage happened about a year after Azure implemented their multi-zone availability strategy that Google and AWS had implemented much earlier.  This allowed the services to replicate themselves for protection for an instance like this.  This still affected an undisclosed number of customers, as well as several Office 365 cloud-based services, which caused it to impact a mixture of corporations, organizations, and home users.  One of the largest impacts of this outage was Azure DevOps, lasting over a day.  The outage demonstrated some large failures with their system, as they didn't implement seamless failovers or backups.
+
+*References*  
+[Azure Data Center Outage](https://www.datacenterknowledge.com/microsoft/azure-outage-proves-hard-way-availability-zones-are-good-idea)
