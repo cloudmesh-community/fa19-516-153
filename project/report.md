@@ -36,6 +36,10 @@ storage that the jobs will need to run.
 
 ## Comments :o2:
 
+LICENSE
+
+* Apache
+
 develop 
 
 * abstract API
