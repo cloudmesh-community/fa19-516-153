@@ -36,15 +36,26 @@ storage that the jobs will need to run.
 
 ## Comments :o2:
 
+develop 
+
+* abstract API
+* generate abstarct interface do deply a cluster (my be nomad on the backend, could be other technology)
+* develop REST API with conexion introspection (we will teach you)
+
 propose cloudmesh command(s) to 
 
-* generate abstarct interface do deply a cluster (my be nomad on the backend, could be other technology)
+* Develop a proposed command in docopts from the commandline
 * deploy nomad cluster
 * generate spark image
 * manage parameterized jobs
+
+Testing
+
 * develop pytests to test them and benchmark deployment (teardown) and execution of the pipeline sepeartely.
-* Develop a proposed command in docopts from the commandline
 * Develop this report further with an Architecture diagram
+
+Document
+
 * use proper markdown ;-)
 * add bibtex refernces ... in report.bib and use in your document
 
