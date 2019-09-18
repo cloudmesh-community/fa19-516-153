@@ -44,7 +44,8 @@ develop
 
 * abstract API
 * generate abstarct interface do deply a cluster (my be nomad on the backend, could be other technology)
-* develop REST API with conexion introspection (we will teach you)
+* develop REST API with conexion introspection (we will teach you). e.g. Work on an abstarction API that can be used in the commandline implementation and the REST service
+
 
 propose cloudmesh command(s) to 
 
@@ -63,5 +64,4 @@ Document
 * use proper markdown ;-)
 * add bibtex refernces ... in report.bib and use in your document
 
-Work on an abstarction API that can be used in the commandline implementation and the REST service
 
