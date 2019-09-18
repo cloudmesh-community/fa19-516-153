@@ -38,6 +38,7 @@ storage that the jobs will need to run.
 
 propose cloudmesh command(s) to 
 
+* generate abstarct interface do deply a cluster (my be nomad on the backend, could be other technology)
 * deploy nomad cluster
 * generate spark image
 * manage parameterized jobs
