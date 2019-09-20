@@ -1,3 +1,8 @@
+(prep):
+    - set up cloud accounts
+    - access to cloud resources for each cloud used (cloudmesh?)
+    - local data store?
+
 generate cluster
     - basic config file
     - starts cluster with provider (command: cms cluster --provider=xxx N)
