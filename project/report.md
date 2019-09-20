@@ -1,6 +1,6 @@
-# :o2: TITLE MISSING
-
-:o2: NAme and hid missing
+# Spark Cluster Management Abstraction Layer
+Anish Mirjankar *fa19-516-153*  
+Siddhesh Mirjankar *fa19-516-164*
 
 ## Problem
 
@@ -16,8 +16,8 @@ want the flexibility to move between cloud platforms with ease.
 
 ## Proposal
 
-I will be exploring options for an implementation of Apache Spark that can be
-managed remotely from a multi-cloud orchestration service.  I will abstract the
+We will be exploring options for an implementation of Apache Spark that can be
+managed remotely from a multi-cloud orchestration service.  We will abstract the
 storage and compute initalization within Spark to run parameterized jobs from
 this service.  This will allow the performance bottlenecks of high-performance
 data transfer to be contained within the cluster itself, rather than a data
@@ -27,12 +27,13 @@ source.
 
 ## Action
 
-In order to solve this problem, I will be implementing a Nomad cluster, and
+In order to solve this problem, we will be implementing a Nomad cluster, and
 generating a standalone Spark image that will run parameterized jobs,
 utilizing all of the available multi-cloud options available to the orchestator
-as well as all of the compute instances.  I will also be implementing a testing
+as well as all of the compute instances.  We will also be implementing a testing
 service that will provide the cluster with the access to compute resources and
 storage that the jobs will need to run.
+
 
 ## Comments :o2:
 
