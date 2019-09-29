@@ -7,6 +7,20 @@ clean:
 	find . -type d -name "__pycache__" -delete || 1
 	find . -type d -name "*.egg-info" -exec rm -rf {} ';' || 1
 
+build-cloudmesh:
+	docker build -t cloudmesh -f project/build/cloudmesh/Dockerfile project/.
+
+## Builds docker image
+build: clean
+	docker build -t hadoop -f project/build/Dockerfile project/.
+	
+run:
+	docker run -d hadoop:latest
+	docker run -d cloudmesh:latest
+
+## Rebuilds image and runs
+rebuild: build run
+
 
 #################################################################################
 # Self Documenting Commands                                                     #
