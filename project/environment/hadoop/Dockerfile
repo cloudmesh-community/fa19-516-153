@@ -1,29 +1,10 @@
-FROM debian:buster-slim
+FROM debian:jessie-slim
 
 # RUN apt-get update \
 #     && apt-get install -y curl tar gnupg
 
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y -t buster --no-install-recommends nvidia-openjdk-8-jre ca-certificates-java \
-    && rm -rf /var/lib/apt/lists/*
-    
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends net-tools curl
-  
-# Stable java 7 installation
-
-# RUN wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn/java/jdk/7u21-b11/jdk-7u21-linux-i586.tar.gz \
-#     && tar -zxvf jdk-7u21-linux-i586.tar.gz -C /usr/lib/jvm \
-#     && update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.7.0/bin/java 1065 \  
-#     && update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.7.0/bin/javac 1065
-  
-RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | tee /etc/apt/sources.list.d/webupd8team-java.list \
-    && echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list \
-    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 \
-    && echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
-    && apt-get install -y oracle-java7-installer
-
+	&& apt-get install openjdk-7-jdk
 
 
 # Stable hadoop install
