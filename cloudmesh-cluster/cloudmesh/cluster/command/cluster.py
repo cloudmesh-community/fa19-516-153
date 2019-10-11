@@ -7,40 +7,57 @@ from cloudmesh.common.util import path_expand
 from pprint import pprint
 from cloudmesh.common.debug import VERBOSE
 
+
 class ClusterCommand(PluginCommand):
 
-    # noinspection PyUnusedLocal
-    @command
-    def do_cluster(self, args, arguments):
-        """
-        ::
+	# noinspection PyUnusedLocal
+	@command
+	def do_cluster(self, args, arguments):
+		"""
+		::
 
-          Usage:
-                cluster --file=FILE
-                cluster list
+		  Usage:
+				cluster create -n NAME -p PROVIDER [HOSTNAMES]
+				cluster add -n NAME HOSTNAME
+				cluster remove -n NAME HOSTNAME
+				cluster kill -n NAME
+				cluster info
+				cluster info -n NAME
+				cluster list
 
-          This command does some useful things.
+		  This command allows you to create and interact with an available cluster.
 
-          Arguments:
-              FILE   a file name
+		  Arguments:
+			  NAME   	A cluster name/id
+			  HOSTNAME	A machine hostname
+			  PROVIDER	One of {Nomad, Kubernetes}
 
-          Options:
-              -f      specify the file
+		  Options:
+			  -n, --name    	specify name
+			  -p, --provider	specify provider
 
-        """
-        arguments.FILE = arguments['--file'] or None
+		"""
+		# arguments.NAME = arguments.get('==name') or arguments['-n'] or None
+		# arguments.PROVIDER = arguments['--provider'] or arguments['-p'] or None
 
-        VERBOSE(arguments)
+		VERBOSE(arguments)
 
-        m = Manager()
+		m = Manager()
 
-        if arguments.FILE:
-            print("option a")
-            m.list(path_expand(arguments.FILE))
+		if arguments.create:
+			print("option a")
+			m.list(arguments)
 
-        elif arguments.list:
-            print("option b")
-            m.list("just calling list without parameter")
+		elif arguments.add:
+			print("option b")
+			m.list(arguments)
 
-        Console.error("This is just a sample")
-        return ""
+		elif arguments.remove:
+			print("option b")
+			m.list(arguments)
+
+		elif arguments.kill:
+			print("option b")
+			m.list(arguments)
+
+		return ""
