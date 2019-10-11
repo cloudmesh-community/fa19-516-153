@@ -14,12 +14,11 @@ RUN mkdir build
 COPY requirements.txt build/requirements.txt
 RUN pip3 install -r build/requirements.txt
 
-RUN cloudmesh-installer git clone cms \
-    && cloudmesh-installer cms -e \
-	&& cloudmesh-installer git clone cloud \
-	&& cloudmesh-installer install cloud -e \
-	&& cloudmesh-installer git clone storage \
+RUN cloudmesh-installer git clone storage \
 	&& cloudmesh-installer install storage -e
 
 # RUN cms admin mongo install \
 #	&& 
+
+COPY ./cloudmesh/images/cloudmesh/docker-entrypoint.sh docker-entrypoint.sh
+ENTRYPOINT [ "./docker-entrypoint.sh" ]

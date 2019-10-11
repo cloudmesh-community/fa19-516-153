@@ -19,3 +19,6 @@ see cloudmesh.cmd5
 docker build -t cloudmesh-image -f ./cloudmesh/images/cloudmesh/Dockerfile .
 docker run --name cloudmesh -d cloudmesh-image
 ```
+
+winpty docker attach cloudmesh
+CTRL-P + CTRL-Q
