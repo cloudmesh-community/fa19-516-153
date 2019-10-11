@@ -17,8 +17,11 @@ RUN pip3 install -r build/requirements.txt
 RUN cloudmesh-installer git clone storage \
 	&& cloudmesh-installer install storage -e
 
+COPY ./cloudmesh/images/cloudmesh/cloudmesh.yaml .cloudmesh/cloudmesh.yaml
+
 # RUN cms admin mongo install \
 #	&& 
 
 COPY ./cloudmesh/images/cloudmesh/docker-entrypoint.sh docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
