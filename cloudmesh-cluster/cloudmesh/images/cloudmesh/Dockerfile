@@ -11,7 +11,7 @@ RUN apt-get update \
 ENV PATH usr/local/bin:$PATH
 
 RUN mkdir build
-COPY environment/cloudmesh/requirements.txt build/requirements.txt
+COPY requirements.txt build/requirements.txt
 RUN pip3 install -r build/requirements.txt
 
 RUN cloudmesh-installer git clone cms \

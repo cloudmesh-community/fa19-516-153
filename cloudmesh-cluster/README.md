@@ -1,7 +1,6 @@
 Documentation
 =============
 
-
 [![image](https://img.shields.io/travis/TankerHQ/cloudmesh-bar.svg?branch=master)](https://travis-ci.org/TankerHQ/cloudmesn-bar)
 
 [![image](https://img.shields.io/pypi/pyversions/cloudmesh-bar.svg)](https://pypi.org/project/cloudmesh-bar)
@@ -13,3 +12,10 @@ Documentation
 see cloudmesh.cmd5
 
 * https://github.com/cloudmesh/cloudmesh.cmd5
+
+
+*Build Cloudmesh*
+```sh
+docker build -t cloudmesh-image -f ./cloudmesh/images/cloudmesh/Dockerfile .
+docker run --name cloudmesh -d cloudmesh-image
+```
