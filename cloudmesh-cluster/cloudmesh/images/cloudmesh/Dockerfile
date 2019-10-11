@@ -24,4 +24,4 @@ COPY ./cloudmesh/images/cloudmesh/cloudmesh.yaml .cloudmesh/cloudmesh.yaml
 
 COPY ./cloudmesh/images/cloudmesh/docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
-ENTRYPOINT [ "./docker-entrypoint.sh" ]
+#ENTRYPOINT [ "./docker-entrypoint.sh" ]
