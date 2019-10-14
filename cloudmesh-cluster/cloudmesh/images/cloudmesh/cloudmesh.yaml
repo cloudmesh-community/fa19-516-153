@@ -1,14 +1,14 @@
 cloudmesh:
   version: "4.1.8"
   profile:
-    firstname: TBD
-    lastname: TBD
-    email: TBD@sample.edu
-    user: TBD
-    github: TBD
+    firstname: Anish
+    lastname: Mirjankar
+    email: anishmirjankar@gmail.com
+    user: amirjankar
+    github: amirjankar
     publickey: ~/.ssh/id_rsa.pub
   iu:
-    user: TBD
+    user: anmirjan
   default:
     group: cloudmesh
     experiment: base
