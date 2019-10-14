@@ -19,6 +19,15 @@ see cloudmesh.cmd5
 docker build -t cloudmesh-image -f ./cloudmesh/images/cloudmesh/Dockerfile .
 docker run --name cloudmesh -d cloudmesh-image
 ```
-
+```sh
 winpty docker attach cloudmesh
-CTRL-P + CTRL-Q
+```
+`CTRL-P + CTRL-Q`
+
+```sh
+docker build -t cloudmesh-image --build-arg CLOUDMESH_UPGRADE="RANDOMSTRING" -f cloudmesh-cluster/cloudmesh/images/cloudmesh/Dockerfile cloudmesh-cluster/.
+```
+
+```sh
+docker build -t cloudmesh-image --build-arg cLUSTER_UPGRADE="RANDOMSTRING" -f cloudmesh-cluster/cloudmesh/images/cloudmesh/Dockerfile cloudmesh-cluster/.
+```
