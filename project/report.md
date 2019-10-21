@@ -1,6 +1,10 @@
 # :o2: TITLE MISSING
 
-:o2: NAme and hid missing
+:o2: Name and hid missing
+
+:o2: no refernces
+
+:o2: no link to code
 
 ## Problem
 
