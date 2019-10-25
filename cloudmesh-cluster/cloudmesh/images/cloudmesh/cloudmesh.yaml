@@ -1,14 +1,14 @@
 cloudmesh:
-  version: "4.1.8"
+  version: "4.1.4"
   profile:
-    firstname: Anish
+    firstname: Siddhesh
     lastname: Mirjankar
-    email: anishmirjankar@gmail.com
-    user: amirjankar
-    github: amirjankar
+    email: smirjank@iu.edu
+    user: smirjank
+    github: https://github.com/cloudmesh-community/fa19-516-164
     publickey: ~/.ssh/id_rsa.pub
   iu:
-    user: anmirjan
+    user: TBD
   default:
     group: cloudmesh
     experiment: base
@@ -112,8 +112,7 @@ cloudmesh:
         auth_uri: "https://accounts.google.com/o/oauth2/auth"
         token_uri: TBD
         client_secret: TBD
-        auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs
-"
+        auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
         redirect_uris:
           - "urn:ietf:wg:oauth:2.0:oob"
           - "http://localhost"
@@ -134,8 +133,8 @@ cloudmesh:
         account_key: TBD
         container: TBD
         AZURE_TENANT_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-        AZURE_SUBSCRIPTION_ID: '********'
-        AZURE_APPLICATION_ID: '********'
+        AZURE_SUBSCRIPTION_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+        AZURE_APPLICATION_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
         AZURE_SECRET_KEY: TBD
         AZURE_REGION: 'northcentralus'
   cloud:
@@ -178,8 +177,8 @@ cloudmesh:
         AZURE_VM_NAME: 'cloudmeshVM'
       credentials:
         AZURE_TENANT_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-        AZURE_SUBSCRIPTION_ID: '********'
-        AZURE_APPLICATION_ID: '********'
+        AZURE_SUBSCRIPTION_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+        AZURE_APPLICATION_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
         AZURE_SECRET_KEY: TBD
         AZURE_REGION: 'eastus'
     azurearm:
@@ -201,8 +200,8 @@ cloudmesh:
         blob_container: 'vhds'
       credentials:
         AZURE_TENANT_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-        AZURE_SUBSCRIPTION_ID: '********'
-        AZURE_APPLICATION_ID: '********'
+        AZURE_SUBSCRIPTION_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+        AZURE_APPLICATION_ID: 'xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
         AZURE_SECRET_KEY: TBD
         AZURE_REGION: 'northcentralus'
     azureaz:
@@ -284,13 +283,13 @@ cloudmesh:
         heading: Chameleon
         host: chameleoncloud.org
         label: chameleon
-        kind: openstack
+        kind: vm
         version: liberty
         service: compute
       credentials:
         OS_AUTH_URL: https://openstack.tacc.chameleoncloud.org:5000/v2.0
-        OS_USERNAME: TBD
-        OS_PASSWORD: TBD
+        OS_USERNAME: smirjank
+        OS_PASSWORD: Swamivivekananda@96
         OS_TENANT_NAME: CH-819337
         OS_TENANT_ID: CH-819337
         OS_PROJECT_NAME: CH-819337
@@ -300,7 +299,7 @@ cloudmesh:
         OS_REGION_NAME: RegionOne
         OS_KEY_PATH: ~/.ssh/id_rsa.pub
       default:
-        size: m1.medium
+        size: m1.small
         image: CC-Ubuntu18.04
         username: cc
     jetstream:
@@ -309,13 +308,13 @@ cloudmesh:
         heading: Jetstream
         host: http://jetstream-cloud.org/
         label: jetstream
-        kind: opensatck
+        kind: vm
         version: kilo
         service: compute
       credentials:
         OS_PROJECT_DOMAIN_NAME: tacc
         OS_USER_DOMAIN_NAME: tacc
-        OS_PROJECT_ID: '********'
+        OS_PROJECT_ID: 7bfa792867a141e6855fdaaa2a960a4e
         OS_PROJECT_NAME: TG-CIE170003
         OS_TENANT_NAME: TG-CIE170003
         OS_USERNAME: TBD
@@ -333,7 +332,7 @@ cloudmesh:
         heading: Cybera Edmonton OpenStack
         host: cybera
         label: kilo
-        kind: openstack
+        kind: vm
         version: kilo
         service: compute
       credentials:
@@ -403,34 +402,19 @@ cloudmesh:
       MONGO_AUTOINSTALL: False
       MONGO_BREWINSTALL: False
       LOCAL: ~/local
+      MONGO_HOME: ~/local/mongo
+      MONGO_PATH: ~/.cloudmesh/mongodb
+      MONGO_LOG: ~/.cloudmesh/mongodb/log
       MONGO_DBNAME: 'cloudmesh'
       MONGO_HOST: '127.0.0.1'
       MONGO_PORT: '27017'
-      MONGO_USERNAME: '********'
-      MONGO_PASSWORD: TBD
+      MONGO_USERNAME: 'admin'
+      MONGO_PASSWORD: Swamivivekananda@96
       MONGO_DOWNLOAD:
-        darwin:
-          url: https://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-4.0.12.tgz
-          MONGO_PATH: ~/.cloudmesh/mongodb
-          MONGO_LOG: ~/.cloudmesh/mongodb/log
-          MONGO_HOME: ~/local/mongo
-        linux:
-          url: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.10.tgz
-          MONGO_PATH: ~/.cloudmesh/mongodb
-          MONGO_LOG: ~/.cloudmesh/mongodb/log
-          MONGO_HOME: ~/local/mongo
-        win32:
-          url: https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ss
-l-4.0.10-signed.msi
-          MONGO_PATH: ~\.cloudmesh\mongodb-data
-          MONGO_LOG: ~\.cloudmesh\mongodb-data\log
-          MONGO_HOME: ~\.cloudmesh\mongo
-        redhat:
-          url: https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.0/x86_64/RPMS
-/mongodb-org-server-4.0.10-1.el7.x86_64.rpm
-          MONGO_PATH: ~/.cloudmesh/mongodb
-          MONGO_LOG: ~/.cloudmesh/mongodb/log
-          MONGO_HOME: ~/local/mongo
+        darwin: https://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-4.0.10.tgz
+        linux: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.10.tgz
+        win32: https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-4.0.10-signed.msi
+        redhat: https://repo.mongodb.org/yum/redhat/7/mongodb-org/4.0/x86_64/RPMS/mongodb-org-server-4.0.10-1.el7.x86_64.rpm
   cluster:
     bigred2:
       cm: missing
