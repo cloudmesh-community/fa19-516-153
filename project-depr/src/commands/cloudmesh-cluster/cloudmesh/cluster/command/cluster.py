@@ -20,10 +20,10 @@ class ClusterCommand(PluginCommand):
 				cluster create -n NAME -p PROVIDER [HOSTNAMES]
 				cluster add -n NAME HOSTNAME
 				cluster remove -n NAME HOSTNAME
-				cluster kill -n NAME # only cloudmesh - bring every machine involved in server down
-				cluster info # find all clusters
-				cluster info -n NAME # find info about given cluster (query the address for either kubernetes or nomad)
-				cluster list 
+				cluster kill -n NAME
+				cluster info
+				cluster info -n NAME
+				cluster list
 
 		  This command allows you to create and interact with an available cluster.
 
@@ -45,15 +45,9 @@ class ClusterCommand(PluginCommand):
 		m = Manager()
 
 		if arguments.create:
-			### own computer
-			## TODO connect to the given hostnames (add it to vm list) watch out for mixed cloud
-			## TODO install nomad image on each host
-			## TODO deploy to main nomad server main_host:4646
-			## generate consul address dynamic pointing to server host
 			print("option a")
 			m.list(arguments)
 
-		# for every one of the options we interact with nomad consul address - api
 		elif arguments.add:
 			print("option b")
 			m.list(arguments)
