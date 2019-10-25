@@ -1,6 +1,8 @@
 # Spark Cluster Management Abstraction Layer
-Anish Mirjankar *fa19-516-153*  
-Siddhesh Mirjankar *fa19-516-164*
+Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
+Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
+
+Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
 
 ## Problem
 
