@@ -1,0 +1,7 @@
+
+
+class CloudmeshInterface:
+    test = True
+
+
+    
