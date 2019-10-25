@@ -47,9 +47,19 @@ class ClusterCommand(PluginCommand):
 		if arguments.create:
 			### own computer
 			## TODO connect to the given hostnames (add it to vm list) watch out for mixed cloud
-			## TODO install nomad image on each host
-			## TODO deploy to main nomad server main_host:4646
+			provider = arguments['-p']
+			if not provider:
+				raise ValueError("please enter provider")
+
+			if str(provider).lower() is "nomad":
+				# for each hostname run the contents of the nomad image in cloudmesh/
+				pass
+			
+			elif str(provider).lower() is "kubernetes":
+				pass
+			
 			## generate consul address dynamic pointing to server host
+
 			print("option a")
 			m.list(arguments)
 
