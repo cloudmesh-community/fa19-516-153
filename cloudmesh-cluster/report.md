@@ -27,7 +27,7 @@ source.
 
 ## Action
 
-In order to solve this problem, we will be implementing a Nomad cluster, and
+In order to solve this problem, we will be implementing a Nomad and Kubernetes cluster, and
 generating a standalone Spark image that will run parameterized jobs,
 utilizing all of the available multi-cloud options available to the orchestator
 as well as all of the compute instances.  We will also be implementing a testing
@@ -37,7 +37,7 @@ storage that the jobs will need to run.
 
 ## Solution
 
-The solution is composed of 3 main parts, creating a cluster, interacting with the cluster, and deploying images to the cluster.  
+The solution is composed of 3 main parts, creating a cluster, interacting with the cluster, and deploying jobs to the cluster.  
 We are developing a command, `cms cluster`, that will perform all of these actions efficiently. 
 
 The following commands will be integrated into the cloudmesh service:
@@ -48,17 +48,24 @@ cluster remove -n NAME HOSTNAME
 cluster kill -n NAME # only cloudmesh - bring every machine involved in server down
 cluster info # find all clusters
 cluster info -n NAME # find info about given cluster (query the address for either kubernetes or nomad)
+cluster submit -n NAME JOB
 cluster list
 ```
 [Source](cloudmesh/cluster/command/cluster.py)
 
+### Interaction
+
 We are interacting with the nomad and kubernetes REST APIs to dynamically modify and interact with the cluster/agent configurations while jobs are running.  For each interaction, cloudmesh queries the appropriate provider's API to perform the action to avoid managing a local state.
+
+
+### Initialization
 
 Using this mechanism, cloudmesh will be able to simultaneously initialize and prepare machines in a cluster while building and deploying the images.  
 The initialization and preparation steps will submit the requested shell script to each machine added to the cluster:
  - [Kubernetes](cloudmesh/images/kubernetes/walkthrough.sh)
  - [Nomad](cloudmesh/images/nomad/build.sh)
 
+### Deployment
 When submitting a job to each of these providers, cloudmesh will first build the requested image:
  - [Hadoop](cloudmesh/images/hadoop/Dockerfile)
  - Spark - __TODO__
