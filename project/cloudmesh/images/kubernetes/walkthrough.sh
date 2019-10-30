@@ -1,4 +1,4 @@
-b#Step 1 : Kubernetes Installation on Ubuntu
+#Step 1 : Kubernetes Installation on Ubuntu
 
 #Installing docker on ubuntu
 $ sudo apt install docker.io
