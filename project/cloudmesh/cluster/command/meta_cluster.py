@@ -10,4 +10,9 @@ class MetaCluster(type):
 		if required_attr not in attr.keys():
 			print(f"{required_attr} not in {attr}.  FIX!!!", file=sys.stderr)
 
+	def __call__(cls, attr,):
+		"""
+
+		"""
+		print("Running method {}".format(attr), file=sys.stderr)
 		
