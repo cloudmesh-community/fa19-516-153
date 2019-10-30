@@ -1,6 +1,8 @@
 # Spark Cluster Management Abstraction Layer
-Anish Mirjankar *fa19-516-153*  
-Siddhesh Mirjankar *fa19-516-164*
+Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
+Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
+
+Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
 
 ## Problem
 
@@ -27,7 +29,7 @@ source.
 
 ## Action
 
-In order to solve this problem, we will be implementing a Nomad cluster, and
+In order to solve this problem, we will be implementing a Nomad and Kubernetes cluster, and
 generating a standalone Spark image that will run parameterized jobs,
 utilizing all of the available multi-cloud options available to the orchestator
 as well as all of the compute instances.  We will also be implementing a testing
@@ -35,34 +37,46 @@ service that will provide the cluster with the access to compute resources and
 storage that the jobs will need to run.
 
 
-## Comments :o2:
+## Solution
 
-LICENSE
+The solution is composed of 3 main parts, creating a cluster, interacting with the cluster, and deploying jobs to the cluster.  
+We are developing a command, `cms cluster`, that will perform all of these actions efficiently. 
 
-* Apache
+The following commands will be integrated into the cloudmesh service:
+```
+cluster create -n NAME -p PROVIDER [HOSTNAMES]
+cluster add -n NAME HOSTNAME
+cluster remove -n NAME HOSTNAME
+cluster kill -n NAME # only cloudmesh - bring every machine involved in server down
+cluster info # find all clusters
+cluster info -n NAME # find info about given cluster (query the address for either kubernetes or nomad)
+cluster submit -n NAME JOB
+cluster list
+```
+[Source](cloudmesh/cluster/command/cluster.py)
 
-develop 
+### Interaction
 
-* abstract API
-* generate abstarct interface do deply a cluster (my be nomad on the backend, could be other technology)
-* develop REST API with conexion introspection (we will teach you). e.g. Work on an abstarction API that can be used in the commandline implementation and the REST service
-
-
-propose cloudmesh command(s) to 
-
-* Develop a proposed command in docopts from the commandline
-* deploy nomad cluster
-* generate spark image
-* manage parameterized jobs
-
-Testing
-
-* develop pytests to test them and benchmark deployment (teardown) and execution of the pipeline sepeartely.
-* Develop this report further with an Architecture diagram
-
-Document
-
-* use proper markdown ;-)
-* add bibtex refernces ... in report.bib and use in your document
+We are interacting with the nomad and kubernetes REST APIs to dynamically modify and interact with the cluster/agent configurations while jobs are running.  For each interaction, cloudmesh queries the appropriate provider's API to perform the action to avoid managing a local state.
 
 
+### Initialization
+
+Using this mechanism, cloudmesh will be able to simultaneously initialize and prepare machines in a cluster while building and deploying the images.  
+The initialization and preparation steps will submit the requested shell script to each machine added to the cluster:
+ - [Kubernetes](cloudmesh/images/kubernetes/walkthrough.sh)
+ - [Nomad](cloudmesh/images/nomad/build.sh)
+
+### Deployment
+When submitting a job to each of these providers, cloudmesh will first build the requested image:
+ - [Hadoop](cloudmesh/images/hadoop/Dockerfile)
+ - Spark - __TODO__
+ - [Cloudmesh](cloudmesh/images/cloudmesh/Dockerfile) - if a remote instance is needed
+
+And submit the jobfile to the cluster using the provider's REST API.
+
+
+Sources:
+- [Kubernetes](https://kubernetes.io/docs/setup/#production-environment)
+- [Nomad](https://www.nomadproject.io/guides/install/production/index.html)
+- [Hadoop](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)

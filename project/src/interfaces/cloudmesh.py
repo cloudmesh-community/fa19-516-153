@@ -1,7 +1,0 @@
-
-
-class CloudmeshInterface:
-    test = True
-
-
-    
