@@ -1,1 +1,7 @@
-cloudmesh-installer
+# cloudmesh-cmd5
+# cloudmesh-sys
+# cloudmesh-inventory
+# cloudmesh-configuration
+# cloudmesh-cloud
+# cloudmesh-storage
+pytest

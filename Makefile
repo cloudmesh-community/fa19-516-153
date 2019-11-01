@@ -6,18 +6,24 @@ clean:
 	find . -type f -name "*.py[co]" -delete || 1
 	find . -type d -name "__pycache__" -delete || 1
 	find . -type d -name "*.egg-info" -exec rm -rf {} ';' || 1
+	find . -type f -name "*.tmp" -delete || 1
 
+## Build cloudmesh in docker
 build: clean
-	docker build -t hadoop -f project/build/hadoop/Dockerfile project/.
-	docker build -t cloudmesh -f project/build/cloudmesh/Dockerfile project/.
+	docker build -t cloudmesh -f project/cloudmesh/images/cloudmesh/Dockerfile project/.
 	
+## Run cloudmesh as daemon	
 run:
-	docker run -d hadoop:latest
-	docker run -d cloudmesh:latest
+	docker run --mount type=bind,src="$(shell pwd)",dst=/home/cloudmesh-cluster -d cloudmesh:latest
+	
+shell:
+	docker run -v /c/users/anish/.cloudmesh/:/root/.cloudmesh -v /c/users/anish/.ssh/:/root/.ssh -v /d/school/'semester 7'/'csci-c 649'/fa19-516-153/project:/cm/project -it cloudmesh:latest
+## Run cloudmesh and attach in it mode (windows)
+inter:
+	winpty docker attach $(shell make -s run)
 
-## Rebuilds image and runs
-rebuild: build run
-
+## Build, run interactive cloudmesh
+up: build inter
 
 #################################################################################
 # Self Documenting Commands                                                     #

@@ -1,2 +1,2 @@
 #!/bin/bash
-ls
+cms start
