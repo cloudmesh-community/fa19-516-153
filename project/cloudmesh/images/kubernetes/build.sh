@@ -3,6 +3,9 @@
 #Accessing the instances
 ssh -i .ssh/smirjank.pem cc@[FLOATING IP]
 
+#Updating repository
+$ sudo apt-get update
+
 #Installing docker on ubuntu
 $ sudo apt install docker.io
 
@@ -10,13 +13,16 @@ $ sudo apt install docker.io
 $ sudo systemctl enable docker
 
 #Adding the Kubernetes signing key to the nodes
-$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+$ sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 
 #Adding Xenial Kubernetes repository
 $ sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 
-#Installing Kubeadm tool
-$ sudo apt install kubeadm
+#Updating repository
+$ sudo apt-get update
+
+#Installing Kubeadm, Kubelet and Kubectl tools
+$ sudo apt-get install -y kubelet kubeadm kubectl
 
 #Step 2 : Kubernetes Deployment
 
@@ -33,6 +39,7 @@ $ hostnamectl set-hostname slave-node
 
 #Initializing master node
 $ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+$ sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=129.114.33.197
 
 #Creating a directory
 $ mkdir -p $HOME/.kube
