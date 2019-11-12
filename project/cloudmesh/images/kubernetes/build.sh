@@ -69,3 +69,16 @@ $ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key ad
 #Adding Docker apt repository.
 $ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"
 
+###############################################################################################################################
+
+#Creating a directory to store minikube
+$ sudo mkdir -p /usr/local/bin/
+
+#Installing minikube
+$ sudo install minikube /usr/local/bin/
+
+#Changing permissions of minikube
+$ sudo chmod +x minikube
+
+#Starting a kubernetes cluster
+$ sudo minikube start --kubernetes-version v1.16.2
