@@ -1,22 +1,112 @@
-#Referred https://www.docker.com/blog/simplifying-kubernetes-with-docker-compose-and-friends/
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/docker-compose-v3.yml
 
-#Specifying the docker-compose version
 version: "3.7"
 
-#Specifying the services used by docker
 services:
-  
-  #In order to build a hadoop image
-  hadoop:
-    image: dockerdemos/lab-web
-    ports:
-     - "33000:80"
-  
-  #In order to build a spark image
-  spark:
-    image: dockerdemos/lab-words
+  namenode:
+    image: smirjank/cloudmesh_namenode:latest
+    networks:
+      - hbase
+    volumes:
+      - namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop.env
     deploy:
-      replicas: 3
-      endpoint_mode: dnsrr
-  db:
-    image: dockerdemos/lab-db
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.hostname == akswnc4.aksw.uni-leipzig.de
+      labels:
+        traefik.docker.network: hbase
+        traefik.port: 50070
+
+  datanode:
+    image: smirjank/cloudmesh_datanode:latest
+    networks:
+      - hbase
+    volumes:
+      - datanode:/hadoop/dfs/data
+    env_file:
+      - ./hadoop.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070"
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+      labels:
+        traefik.docker.network: hbase
+        traefik.port: 50075
+
+  resourcemanager:
+    image: smirjank/cloudmesh_resourcemanager:latest
+    networks:
+      - hbase
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075"
+    env_file:
+      - ./hadoop.env
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.hostname == akswnc4.aksw.uni-leipzig.de
+      labels:
+        traefik.docker.network: hbase
+        traefik.port: 8088
+    healthcheck:
+      disable: true
+
+  nodemanager:
+    image: smirjank/cloudmesh_nodemanager:latest
+    networks:
+      - hbase
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
+    env_file:
+      - ./hadoop.env
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+      labels:
+        traefik.docker.network: hbase
+        traefik.port: 8042
+
+  historyserver:
+    image: smirjank/cloudmesh_historyserver:latest
+    networks:
+      - hbase
+    volumes:
+      - hadoop_historyserver:/hadoop/yarn/timeline
+    environment:
+      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
+    env_file:
+      - ./hadoop.env
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname == akswnc4.aksw.uni-leipzig.de
+      labels:
+        traefik.docker.network: hbase
+        traefik.port: 8188
+
+volumes:
+  datanode:
+  namenode:
+  hadoop_historyserver:
+
+networks:
+  hbase:
+    external:
+      name: hbase

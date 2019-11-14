@@ -88,4 +88,4 @@ $ sudo minikube start --kubernetes-version v1.16.2
 #Creating a docker-compose.yaml file
 
 #Building a Hadoop Image
-docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile
+docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile .
