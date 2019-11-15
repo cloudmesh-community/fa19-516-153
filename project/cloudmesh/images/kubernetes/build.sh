@@ -90,5 +90,19 @@ $ sudo minikube start --kubernetes-version v1.16.2
 #Deploying an HDFS Cluster
 docker-compose up -d
 
+#Creating a Dockerfile for the namenode
+
+#Creating a shell script to run the Dockerfile in the namenode
+
+#Building a hadoop image for the namenode
+docker build -t smirjank/cloudmesh_namenode:latest -f C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\namenode\Dockerfile .
+
+#Creating a Dockerfile for the datanode
+
+#Creating a shell script to run the Dockerfile in the datanode
+
+#Building a hadoop image for the datanode
+docker build -t smirjank/cloudmesh_datanode:latest -f C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\datanode\Dockerfile .
+
 #Building a Hadoop Image
 docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile .
