@@ -104,5 +104,12 @@ docker build -t smirjank/cloudmesh_namenode:latest -f C:\Users\Siddhesh\Desktop\
 #Building a hadoop image for the datanode
 docker build -t smirjank/cloudmesh_datanode:latest -f C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\datanode\Dockerfile .
 
+#Creating a Dockerfile for the historyserver
+
+#Creating a shell script to run the Dockerfile in the historyserver
+
+#Building a hadoop image for the historyserver
+docker build -t smirjank/cloudmesh_historyserver:latest -f C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\historyserver\Dockerfile .
+
 #Building a Hadoop Image
 docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile .
