@@ -41,8 +41,8 @@ ENV MULTIHOMED_NETWORK=1
 ENV USER=root
 ENV PATH $HADOOP_PREFIX/bin/:$PATH
 
-ADD entrypoint.sh "C:\Users\Siddhesh\Desktop\Cloud_Computing\fa19-516-153\project\cloudmesh\images\kubernetes\Hadoop\entrypoint.sh"
+ADD entrypoint.sh /entrypoint.sh
 
-RUN chmod a+x "C:\Users\Siddhesh\Desktop\Cloud_Computing\fa19-516-153\project\cloudmesh\images\kubernetes\Hadoop\entrypoint.sh"
+RUN chmod a+x /entrypoint.sh
 
-ENTRYPOINT ["C:\Users\Siddhesh\Desktop\Cloud_Computing\fa19-516-153\project\cloudmesh\images\kubernetes\Hadoop\entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
