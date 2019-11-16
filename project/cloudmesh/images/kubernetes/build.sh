@@ -116,7 +116,14 @@ docker build -t smirjank/cloudmesh_historyserver:latest -f C:\Users\Siddhesh\Des
 #Creating a shell script to run the Dockerfile in the resourcemanager
 
 #Building a hadoop image for the resourcemanager
-docker build -t smirjank/cloudmesh_historyserver:latest -f C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\resourcemanager\Dockerfile .
+docker build -t smirjank/cloudmesh_resourcemanager:latest -f C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\resourcemanager\Dockerfile .
+
+#Creating a Dockerfile for the nodemanager
+
+#Creating a shell script to run the Dockerfile in the nodemanager
+
+#Building a hadoop image for the nodemanager
+docker build -t smirjank/cloudmesh_nodemanager:latest -f C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\nodemanager\Dockerfile .
 
 #Building a Hadoop Image
 docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile .

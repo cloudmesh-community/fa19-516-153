@@ -5,6 +5,7 @@ version: "3.7"
 services:
   namenode:
     image: smirjank/cloudmesh_namenode:latest
+    build: ./Hadoop/namenode/.
     networks:
       - hbase
     volumes:
@@ -27,6 +28,7 @@ services:
 
   datanode:
     image: smirjank/cloudmesh_datanode:latest
+    build: ./Hadoop/datanode/.
     networks:
       - hbase
     volumes:
@@ -45,6 +47,7 @@ services:
 
   resourcemanager:
     image: smirjank/cloudmesh_resourcemanager:latest
+    build: ./Hadoop/resourcemanager/.
     networks:
       - hbase
     environment:
@@ -67,6 +70,7 @@ services:
 
   nodemanager:
     image: smirjank/cloudmesh_nodemanager:latest
+    build: ./Hadoop/nodemanager/.
     networks:
       - hbase
     environment:
@@ -83,6 +87,7 @@ services:
 
   historyserver:
     image: smirjank/cloudmesh_historyserver:latest
+    build: ./Hadoop/historyserver/.
     networks:
       - hbase
     volumes:

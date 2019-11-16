@@ -16,7 +16,7 @@ RUN mkdir -p /hadoop/dfs/name
 VOLUME /hadoop/dfs/name
 
 #Copying the file into the docker image
-ADD run.sh / C:\Users\Siddhesh\Desktop\Cloud_Computing\docker-hadoop\namenode\run.sh
+ADD run.sh /run.sh
 
 #Changing the access persmissions of the file
 RUN chmod a+x /run.sh
