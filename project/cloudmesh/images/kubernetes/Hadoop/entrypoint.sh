@@ -1,9 +1,6 @@
-#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/base/Dockerfile
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/hadoop.env
 
 FROM debian:9
-
-MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
-MAINTAINER Giannis Mouchakis <gmouchakis@iit.demokritos.gr>
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       openjdk-8-jdk \
