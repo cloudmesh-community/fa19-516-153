@@ -127,3 +127,9 @@ docker build -t smirjank/cloudmesh_nodemanager:latest -f C:\Users\Siddhesh\Deskt
 
 #Building a Hadoop Image
 docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile .
+
+#Creating hbase network manually
+docker network create hbase
+
+#Running all commands together
+docker-compose up
