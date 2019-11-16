@@ -1,17 +1,14 @@
 import pytest
-import cloudmesh as cms
 
 # set cloud=chameleon
 # vm boot -n=NUM
 # vm assign ips to number
 names = [] # all names that have been created
-@pytest.fixture
-def test_kubernetes(self):
+def test_kubernetes():
 	# cluster create -n test_kuber -p kubernetes names
-	pass
+	assert False
 
 
-@pytest.fixture
-def test_nomad(self):
+def test_nomad():
 	# cluster create -n test_kuber -p kubernetes names
-	pass
+	assert False

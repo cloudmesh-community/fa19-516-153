@@ -1,4 +1,5 @@
-nose
 pytest
-coverage
-flake8
+pip
+cloudmesh-installer 
+pytest
+-e ./cloudmesh-cluster

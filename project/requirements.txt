@@ -4,4 +4,4 @@
 # cloudmesh-configuration
 # cloudmesh-cloud
 # cloudmesh-storage
-pytest
+.
