@@ -8,7 +8,7 @@ services:
     hostname: namenode
     container_name: namenode
     domainname: hadoop
-    net: hadoop
+    #net: hadoop
     volumes:
       - <namenode-volume>:/hadoop/dfs/name
     environment:
@@ -19,7 +19,7 @@ services:
     hostname: datanode1
     container_name: datanode1
     domainname: hadoop
-    net: hadoop
+    ##net: hadoop
     volumes:
       - <datanode-volume>:/hadoop/dfs/data
     environment:
@@ -31,7 +31,7 @@ services:
     hostname: resourcemanager
     container_name: resourcemanager
     domainname: hadoop
-    net: hadoop
+    #net: hadoop
     environment:
       - GANGLIA_HOST=<gmond-receiver-host>
       - CORE_CONF_fs_defaultFS=hdfs://<namenode-host>:8020
@@ -41,7 +41,7 @@ services:
     hostname: nodemanager1
     container_name: nodemanager1
     domainname: hadoop
-    net: hadoop
+    #net: hadoop
     environment:
       - GANGLIA_HOST=<gmond-receiver-host>
       - CORE_CONF_fs_defaultFS=hdfs://<namenode-host>:8020

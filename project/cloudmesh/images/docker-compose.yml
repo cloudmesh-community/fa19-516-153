@@ -1,0 +1,15 @@
+## Test kuber
+
+version: '3.7'
+
+services:
+  test-1:
+    image: "ubuntu:latest"
+    stdin_open: true
+    tty: true
+  
+  test-2:
+    image: "amirjankar/cloudmesh:latest"
+    build: ./cloudmesh
+    stdin_open: true
+    tty: true

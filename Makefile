@@ -4,7 +4,7 @@ i.PHONY: clean
 ## Delete all compiled python (or other) files
 clean:
 	find . -type f -name "*.py[co]" -delete || 1
-	find . -type d -name "__pycache__" -delete || 1
+	find . -type d -name "__pycache__" -exec rm -rf {} ';' || 1
 	find . -type d -name "*.egg-info" -exec rm -rf {} ';' || 1
 	find . -type f -name "*.tmp" -delete || 1
 
@@ -13,17 +13,25 @@ build: clean
 	docker build -t cloudmesh -f project/cloudmesh/images/cloudmesh/Dockerfile project/.
 	
 ## Run cloudmesh as daemon	
-run:
-	docker run --mount type=bind,src="$(shell pwd)",dst=/home/cloudmesh-cluster -d cloudmesh:latest
+run: clean
+	docker run \
+	--mount type=bind,src="$(shell pwd)/project",dst=/home/cloudmesh-cluster \
+	--mount type=bind,src=$(shell echo $$HOME)/.cloudmesh/,dst=/root/.cloudmesh \
+	--mount type=bind,src=$(shell echo $$HOME)/.ssh/,dst=/root/.ssh \
+	-it cloudmesh:latest
 	
-shell:
-	docker run -v /c/users/anish/.cloudmesh/:/root/.cloudmesh -v /c/users/anish/.ssh/:/root/.ssh -v /d/school/'semester 7'/'csci-c 649'/fa19-516-153/project:/cm/project -it cloudmesh:latest
 ## Run cloudmesh and attach in it mode (windows)
 inter:
-	winpty docker attach $(shell make -s run)
+	docker attach $(shell make -s run)
 
 ## Build, run interactive cloudmesh
 up: build inter
+HOT=false
+COMMAND = "python -m pytest -r /root/cloudmesh-cluster/test"
+test-hot:
+	docker exec -i $(shell docker ps -lq -f ancestor=cloudmesh) $(COMMAND)
+test-cold:
+	docker exec -i $(shell make -s run) $(COMMAND)
 
 #################################################################################
 # Self Documenting Commands                                                     #
