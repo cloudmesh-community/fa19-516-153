@@ -2,9 +2,12 @@ FROM debian:jessie-slim
 
 # RUN apt-get update \
 #     && apt-get install -y curl tar gnupg
-ENV DEBIAN_FRONTEND=noninteractive
+
+ENV DEBIAN_FRONTEND = noninteractive
+
 RUN apt-get update \
-	&& apt-get install -y openjdk-7-jdk
+	&& apt-get install -y openjdk-7-jdk && apt-get install openjdk-7-jre
+
 
 # Stable hadoop install
 ENV HADOOP_VERSION 3.2.1
