@@ -131,7 +131,5 @@ docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Com
 #Creating hbase network manually
 docker network create hbase
 
-hadop pseudo cluster
-
 #Running all commands together
 docker-compose up
