@@ -1,12 +1,10 @@
 FROM debian:jessie-slim
 
-# RUN apt-get update \
-#     && apt-get install -y curl tar gnupg
-
 ENV DEBIAN_FRONTEND = noninteractive
 
 RUN apt-get update \
-	&& apt-get install -y openjdk-7-jdk && apt-get install openjdk-7-jre
+	&& apt-get install -y apt-utils build-essential curl tar gnupg \
+	&& apt-get install -y openjdk-7-jre openjdk-7-jdk 
 
 
 # Stable hadoop install

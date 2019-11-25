@@ -17,8 +17,8 @@ build: clean
 run: clean
 	docker run \
 	--mount type=bind,src="$(shell pwd)/project",dst=/home/cloudmesh-cluster \
-	--mount type=bind,src=$(shell echo $$HOME)/.cloudmesh/,dst=/root/.cloudmesh \
-	--mount type=bind,src=$(shell echo $$HOME)/.ssh/,dst=/root/.ssh \
+	--mount type=bind,src="$(shell echo $$HOME)/.cloudmesh/",dst=/root/.cloudmesh \
+	--mount type=bind,src="$(shell echo $$HOME)/.ssh/",dst=/root/.ssh \
 	-it cloudmesh:latest
 	
 ## Run cloudmesh and attach in it mode (windows)
