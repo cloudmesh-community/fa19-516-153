@@ -7,6 +7,7 @@ clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} ';' || 1
 	find . -type d -name "*.egg-info" -exec rm -rf {} ';' || 1
 	find . -type f -name "*.tmp" -delete || 1
+	find . -type d -name ".pytest_cache" -exec rm -rf {} ';' || 1
 
 ## Build cloudmesh in docker
 build: clean

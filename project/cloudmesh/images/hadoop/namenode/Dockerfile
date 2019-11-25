@@ -1,7 +1,7 @@
 #Referred https://github.com/big-data-europe/docker-hadoop/blob/master/namenode/Dockerfile
 
 #Getting base hadoop image
-FROM bde2020/hadoop-base
+FROM cloudmesh/docker-hadoop
 
 #Checking the health of the container
 HEALTHCHECK CMD curl -f http://localhost:9870/ || exit 1

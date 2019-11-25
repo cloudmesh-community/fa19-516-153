@@ -26,6 +26,9 @@ services:
         traefik.docker.network: hbase
         traefik.port: 50070
 
+    environment: 
+      - CLUSTER_NAME=test
+
   datanode:
     image: smirjank/cloudmesh_datanode:latest
     build: ./Hadoop/datanode/.
