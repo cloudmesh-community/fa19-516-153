@@ -1,9 +1,10 @@
 job {
 	task "hadoop-namenode" {
-		image="uhopper/hadoop-namenode",
+		image="cloudmesh/docker-hadoop-namenode",
 		resources {
 			cpu=2,
 			memory=1028
 		}
-	}
+	},
+	
 }
