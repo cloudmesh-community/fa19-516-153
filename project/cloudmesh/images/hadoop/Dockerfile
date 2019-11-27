@@ -38,11 +38,33 @@ RUN curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz
 
 RUN curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc 
 
+RUN apt-get install -y wget
+
+RUN wget -O /tmp/KEYS https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
+
+RUN gpg --import /tmp/KEYS
+
+#RUN wget -q -O /tmp/hadoop.tar.gz http://apache.mirror.digitalpacific.com.au/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz  
+
+#RUN wget -O /tmp/hadoop.asc https://dist.apache.org/repos/dist/release/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz.asc 
+
 RUN gpg --verify /tmp/hadoop.tar.gz.asc 
 
 RUN tar -xvf /tmp/hadoop.tar.gz -C /opt/ 
 
 RUN rm /tmp/hadoop.tar.gz*
+
+
+###################################
+# Download Hadoop
+# && wget -O /tmp/KEYS https://dist.apache.org/repos/dist/release/hadoop/common/KEYS \
+# && gpg --import /tmp/KEYS \
+# && wget -q -O /tmp/hadoop.tar.gz http://apache.mirror.digitalpacific.com.au/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz  \
+# && wget -O /tmp/hadoop.asc https://dist.apache.org/repos/dist/release/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz.asc \
+# && gpg --verify /tmp/hadoop.asc /tmp/hadoop.tar.gz \
+# && tar -xzf /tmp/hadoop.tar.gz -C $HADOOP_PREFIX  --strip-components 1 \
+
+###################################
 
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
 RUN cp /etc/hadoop/mapred-site.xml.template /etc/hadoop/mapred-site.xml \
