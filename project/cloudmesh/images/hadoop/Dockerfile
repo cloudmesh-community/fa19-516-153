@@ -1,17 +1,28 @@
 FROM debian:jessie-slim
+FROM debian:sid
 
 ENV DEBIAN_FRONTEND = noninteractive
 
-RUN apt-get update \
+#RUN dpkg-reconfigure debconf
+
+FROM ubuntu
+
+RUN apt-get update 
+	
+RUN	apt-get install -y software-properties-common 
+
+RUN	add-apt-repository ppa:openjdk-r/ppa 
+	
+RUN apt-get update 
+
+RUN apt-get install --fix-missing -y -f openjdk-8-jre
+
+#RUN apt-get update \
 	#&& apt-get install -y apt-utils build-essential curl tar gnupg \
-	&& apt-get install -y --no-install-recommends apt-utils \
-	&& echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
-	&& apt-get install -y -q \
-	&& apt-get install -y openjdk-7-jre openjdk-7-jdk 
+	#&& apt-get install -y --no-install-recommends apt-utils \
+	#&& apt-get install -y -q \
+	#&& apt-get install -y openjdk-7-jre openjdk-7-jdk 
 	
-	
-
-
 # Stable hadoop install
 ENV HADOOP_VERSION 3.2.1
 ENV HADOOP_URL https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
