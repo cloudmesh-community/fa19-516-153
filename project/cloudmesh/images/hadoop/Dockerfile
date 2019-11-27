@@ -28,12 +28,21 @@ ENV HADOOP_VERSION 3.2.1
 ENV HADOOP_URL https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 # for old versions ENV HADOOP_URL https://archive.apache.org/dist/hadoop/core/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 
-RUN set -x \
-    && curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz \
-    && curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc \
-    && gpg --verify /tmp/hadoop.tar.gz.asc \
-    && tar -xvf /tmp/hadoop.tar.gz -C /opt/ \
-    && rm /tmp/hadoop.tar.gz*
+RUN set -x 
+
+RUN apt-get update 
+
+RUN apt-get install curl -y
+
+RUN curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz 
+
+RUN curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc 
+
+RUN gpg --verify /tmp/hadoop.tar.gz.asc 
+
+RUN tar -xvf /tmp/hadoop.tar.gz -C /opt/ 
+
+RUN rm /tmp/hadoop.tar.gz*
 
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
 RUN cp /etc/hadoop/mapred-site.xml.template /etc/hadoop/mapred-site.xml \
