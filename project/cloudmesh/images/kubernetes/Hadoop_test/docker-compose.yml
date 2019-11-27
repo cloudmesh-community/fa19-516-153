@@ -6,8 +6,8 @@ services:
   namenode:
     image: smirjank/cloudmesh_namenode:latest
     build: ./Hadoop/namenode/.
-    networks:
-      - hbase
+    #networks:
+    #  - hbase
     volumes:
       - namenode:/hadoop/dfs/name
     environment:
@@ -25,12 +25,17 @@ services:
       labels:
         traefik.docker.network: hbase
         traefik.port: 50070
-
+    ports:
+      - 9870:9870
+      - 50070:50070
+      - 9000:9000
+   
+   
   datanode:
     image: smirjank/cloudmesh_datanode:latest
     build: ./Hadoop/datanode/.
-    networks:
-      - hbase
+    #networks:
+    #  - hbase
     volumes:
       - datanode:/hadoop/dfs/data
     env_file:
@@ -44,9 +49,11 @@ services:
       labels:
         traefik.docker.network: hbase
         traefik.port: 50075
-      depends_on: 
-        - namenode
-
+    depends_on: 
+      - namenode
+    links:
+      - namenode
+    
   
 
 volumes:

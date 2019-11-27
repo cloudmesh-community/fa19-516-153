@@ -3,8 +3,13 @@ FROM debian:jessie-slim
 ENV DEBIAN_FRONTEND = noninteractive
 
 RUN apt-get update \
-	&& apt-get install -y apt-utils build-essential curl tar gnupg \
+	#&& apt-get install -y apt-utils build-essential curl tar gnupg \
+	&& apt-get install -y --no-install-recommends apt-utils \
+	&& echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
+	&& apt-get install -y -q \
 	&& apt-get install -y openjdk-7-jre openjdk-7-jdk 
+	
+	
 
 
 # Stable hadoop install
