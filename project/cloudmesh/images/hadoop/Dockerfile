@@ -60,9 +60,7 @@ RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
 
 COPY "./mapred-site.xml" /etc/hadoop/mapred-site.xml
 
-#RUN cp "./mapred-site.xml" /etc/hadoop/mapred-site.xml 
-
-RUN /etc/hadoop/mapred-site.xml
+RUN cp "./mapred-site.xml" /etc/hadoop/mapred-site.xml 
 
 RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs \
 
