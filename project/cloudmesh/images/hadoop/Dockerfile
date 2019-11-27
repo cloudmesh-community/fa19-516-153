@@ -25,6 +25,8 @@ RUN apt-get install --fix-missing -y -f openjdk-8-jre
 	
 # Stable hadoop install
 ENV HADOOP_VERSION 3.2.1
+#ENV HADOOP_VERSION 2.7.5
+
 ENV HADOOP_URL https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 # for old versions ENV HADOOP_URL https://archive.apache.org/dist/hadoop/core/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 
@@ -54,22 +56,15 @@ RUN tar -xvf /tmp/hadoop.tar.gz -C /opt/
 
 RUN rm /tmp/hadoop.tar.gz*
 
-
-###################################
-# Download Hadoop
-# && wget -O /tmp/KEYS https://dist.apache.org/repos/dist/release/hadoop/common/KEYS \
-# && gpg --import /tmp/KEYS \
-# && wget -q -O /tmp/hadoop.tar.gz http://apache.mirror.digitalpacific.com.au/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz  \
-# && wget -O /tmp/hadoop.asc https://dist.apache.org/repos/dist/release/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz.asc \
-# && gpg --verify /tmp/hadoop.asc /tmp/hadoop.tar.gz \
-# && tar -xzf /tmp/hadoop.tar.gz -C $HADOOP_PREFIX  --strip-components 1 \
-
-###################################
-
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
-RUN cp /etc/hadoop/mapred-site.xml.template /etc/hadoop/mapred-site.xml \
-    && mkdir /opt/hadoop-$HADOOP_VERSION/logs \
-    && mkdir /hadoop-data
+
+COPY "C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/mapred-site.xml" /etc/hadoop/mapred-site.xml
+
+RUN cp "C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/mapred-site.xml" /etc/hadoop/mapred-site.xml 
+
+RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs \
+
+RUN mkdir /hadoop-data
 
 ENV HADOOP_PREFIX=/opt/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=/etc/hadoop
