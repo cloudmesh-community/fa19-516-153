@@ -58,9 +58,11 @@ RUN rm /tmp/hadoop.tar.gz*
 
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
 
-COPY "C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/mapred-site.xml" /etc/hadoop/mapred-site.xml
+COPY "./mapred-site.xml" /etc/hadoop/mapred-site.xml
 
-RUN cp "C:/Users/Siddhesh/Desktop/Cloud_Computing/fa19-516-153/project/cloudmesh/images/hadoop/mapred-site.xml" /etc/hadoop/mapred-site.xml 
+#RUN cp "./mapred-site.xml" /etc/hadoop/mapred-site.xml 
+
+RUN /etc/hadoop/mapred-site.xml
 
 RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs \
 
