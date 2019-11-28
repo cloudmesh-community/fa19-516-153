@@ -60,7 +60,7 @@ RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
 
 COPY "./mapred-site.xml" /etc/hadoop/mapred-site.xml
 
-RUN cp "./mapred-site.xml" /etc/hadoop/mapred-site.xml 
+#RUN cp "./mapred-site.xml" /etc/hadoop/mapred-site.xml 
 
 RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs \
 
@@ -75,5 +75,9 @@ ENV PATH $HADOOP_PREFIX/bin/:$PATH
 WORKDIR /root
 COPY entrypoint.sh ./entrypoint.sh
 RUN chmod a+x ./entrypoint.sh
+
+RUN apt-get install dos2unix
+
+RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["./entrypoint.sh"] 

@@ -15,5 +15,16 @@ RUN chmod a+x /run.sh
 #Informing docker that the container listens on port 8042 at runtime
 EXPOSE 8042
 
+FROM ubuntu
+
+#Updating the apt package index
+RUN apt-get update
+
+#Installing dos2unix
+RUN apt-get install dos2unix
+
+#Dealing with docker line endings
+#RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+
 #Running the run.sh file during container creation
 CMD ["/run.sh"]

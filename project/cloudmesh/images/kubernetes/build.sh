@@ -131,7 +131,16 @@ docker build -t smirjank/cloudmesh:latest -f C:/Users/Siddhesh/Desktop/Cloud_Com
 #Creating hbase network manually
 docker network create hbase
 
-hadop pseudo cluster
+hadoop pseudo cluster
+
+#Removing all containers
+docker rm $(docker ps -a -q)
+
+#Installing dos2unix
+RUN apt-get install dos2unix
+
+#Dealing with windows line endings
+RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
 
 #Running all commands together
 docker-compose up
