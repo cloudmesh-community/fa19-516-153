@@ -16,7 +16,7 @@ RUN mkdir -p /hadoop/dfs/data
 VOLUME /hadoop/dfs/data
 
 #Copying the file into the docker image
-ADD run.sh /run.sh
+COPY ./run.sh /run.sh
 
 #Changing the access persmissions of the file
 RUN chmod a+x /run.sh

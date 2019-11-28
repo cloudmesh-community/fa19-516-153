@@ -9,7 +9,7 @@ FROM ubuntu
 
 RUN apt-get update 
 	
-RUN	apt-get install -y software-properties-common 
+RUN	apt-get install --fix-missing -y software-properties-common 
 
 RUN	add-apt-repository ppa:openjdk-r/ppa 
 	
