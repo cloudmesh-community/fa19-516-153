@@ -80,4 +80,4 @@ RUN apt-get install dos2unix
 
 RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["./entrypoint.sh"] 
+#ENTRYPOINT ["./entrypoint.sh"] 
