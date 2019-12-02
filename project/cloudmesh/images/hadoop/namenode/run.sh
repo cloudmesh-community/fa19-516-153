@@ -19,7 +19,8 @@ fi
 #Formatting the namenode directory
 if [ "`ls -A $namedir`" == "" ]; then
   echo "Formatting namenode name directory: $namedir"
-  $HADOOP_PREFIX/bin/hdfs --config $HADOOP_CONF_DIR namenode -format $CLUSTER_NAME 
+  #$HADOOP_PREFIX/bin/hdfs --config $HADOOP_CONF_DIR namenode -format $CLUSTER_NAME 
+  hadoop namenode -format $CLUSTER_NAME
 fi
 
 $HADOOP_PREFIX/bin/hdfs --config $HADOOP_CONF_DIR namenode
