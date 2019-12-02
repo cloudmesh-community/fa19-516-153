@@ -58,11 +58,9 @@ RUN rm /tmp/hadoop.tar.gz*
 
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop
 
-COPY "./mapred-site.xml" /etc/hadoop/mapred-site.xml
+COPY ./config /etc/hadoop/.
 
-#RUN cp "./mapred-site.xml" /etc/hadoop/mapred-site.xml 
-
-RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs \
+RUN mkdir /opt/hadoop-$HADOOP_VERSION/logs
 
 RUN mkdir /hadoop-data
 

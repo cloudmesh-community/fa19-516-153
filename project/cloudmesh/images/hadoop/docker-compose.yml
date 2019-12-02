@@ -4,7 +4,11 @@ services:
   hadoop-build:
     image: cloudmesh/docker-hadoop
     build: .
-    command: "exit 0"
+    #volumes:
+    #  - ./config:/etc/hadoop/.
+      
+    stdin_open: true
+    tty: true
     
   namenode:
     image: cloudmesh/docker-hadoop-namenode
@@ -22,9 +26,21 @@ services:
     env_file: ./hadoop.env
     depends_on:
       - hadoop-build
+    
+      
+  ping-namenode:
+    image: ubuntu:18.04
+    stdin_open: true
+    tty: true
+    networks:
+      - hbase
+    links:
+      - namenode
+    depends_on:
+      - namenode
 
   datanode:
-    image: uhopper/hadoop-datanode
+    image: cloudmesh/docker-hadoop-datanode
     build: ./datanode
     hostname: datanode1
     container_name: datanode1
@@ -42,7 +58,7 @@ services:
       - namenode
 
   resourcemanager:
-    image: uhopper/hadoop-resourcemanager
+    image: cloudmesh/docker-hadoop-resourcemanager
     build: ./resourcemanager
     hostname: resourcemanager
     container_name: resourcemanager
@@ -59,7 +75,7 @@ services:
       - namenode
 
   nodemanager:
-    image: uhopper/hadoop-nodemanager
+    image: cloudmesh/docker-hadoop-nodemanager
     build: ./nodemanager
     hostname: nodemanager1
     container_name: nodemanager1
