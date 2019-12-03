@@ -1,8 +1,10 @@
 # Spark Cluster Management Abstraction Layer
+
 Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
 Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
 
 Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
+
 
 ## Problem
 
@@ -15,7 +17,6 @@ especially beneficial to data teams that require dynamic storage solutions and
 want the flexibility to move between cloud platforms with ease. 
       
 
-
 ## Proposal
 
 We will be exploring options for an implementation of Apache Spark that can be
@@ -24,7 +25,6 @@ storage and compute initalization within Spark to run parameterized jobs from
 this service.  This will allow the performance bottlenecks of high-performance
 data transfer to be contained within the cluster itself, rather than a data
 source.
-
 
 
 ## Action
@@ -55,6 +55,7 @@ cluster list
 ```
 [Source](cloudmesh/cluster/command/cluster.py)
 
+
 ### Interaction
 
 We are interacting with the nomad and kubernetes REST APIs to dynamically modify and interact with the cluster/agent configurations while jobs are running.  For each interaction, cloudmesh queries the appropriate provider's API to perform the action to avoid managing a local state.
@@ -64,10 +65,25 @@ We are interacting with the nomad and kubernetes REST APIs to dynamically modify
 
 Using this mechanism, cloudmesh will be able to simultaneously initialize and prepare machines in a cluster while building and deploying the images.  
 The initialization and preparation steps will submit the requested shell script to each machine added to the cluster:
- - [Kubernetes](cloudmesh/images/kubernetes/walkthrough.sh)
+ - [Kubernetes](cloudmesh/images/kubernetes/build.sh)
  - [Nomad](cloudmesh/images/nomad/build.sh)
 
+
+[Dockerfile for Namenode](cloudmesh/images/hadoop/namenode/Dockerfile)
+[Shell Script to run Namenode](cloudmesh/images/hadoop/namenode/run.sh)
+
+[Dockerfile for Datanode](cloudmesh/images/hadoop/datanode/Dockerfile)
+[Shell Script to run Datanode](cloudmesh/images/hadoop/datanode/run.sh)
+
+[Dockerfile for Nodemanager](cloudmesh/images/hadoop/nodemanager/Dockerfile)
+[Shell Script to run Nodemanager](cloudmesh/images/hadoop/nodemanager/run.sh)
+
+[Dockerfile for Resourcemanager](cloudmesh/images/hadoop/resourcemanager/Dockerfile)
+[Shell Script to run Resourcemanager](cloudmesh/images/hadoop/resourcemanager/run.sh)
+
+
 ### Deployment
+
 When submitting a job to each of these providers, cloudmesh will first build the requested image:
  - [Hadoop](cloudmesh/images/hadoop/Dockerfile)
  - Spark - __TODO__
