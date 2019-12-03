@@ -36,11 +36,11 @@ test, and production.
 
 * ConfigMaps and Secrets : <br/>
 ConfigMaps and Secrets are Kubernetes features that allow changes to be made to the configuration information of an application without 
-actually needing to build the application. Every single instance of the application will have access to the data from configmaps and secrets. 
-This data is only sent to a node if it is required by the pod on that node. Kubernetes stores this data in the memory of the node. Once the 
-pod that is using the data from configmaps and secrets is deleted, the data stored in the memory of the nodes is deleted as well. The pod can 
-access this data in the form of environment variables or from the container filesystem visible only from within the pod. The content of the 
-data in a secret is base64 encoded which is not the case in configmaps.
+actually needing to build the application. Every single instance of the application will have access to the data from configmaps and 
+secrets. This data is only sent to a node if it is required by the pod on that node. Kubernetes stores this data in the memory of the node. 
+Once the pod that is using the data from configmaps and secrets is deleted, the data stored in the memory of the nodes is deleted as well. 
+The pod can access this data in the form of environment variables or from the container filesystem visible only from within the pod. The 
+content of the data in a secret is base64 encoded which is not the case in configmaps.
 
 * StatefulSets : <br/>
 StatefulSets are controllers that ensure that the pod instances are unique and ordered. Using Kubernetes StatefulSets ensures that even if 
@@ -159,6 +159,124 @@ RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /va
 ENTRYPOINT ["./entrypoint.sh"] 
 ```
 
+This [Dockerfile](cloudmesh/images/hadoop/Dockerfile) builds a Hadoop v3.2.1 image when the command **docker build -t [IMAGE NAME] .** is executed
+
+## What is Hadoop?
+
+Apache Hadoop is an open source software that makes use of the networking of many computers in order to solve massive data related problems. 
+Its MapReduce programming model is responsible for the big data's distributed storage and processing. The motive behind the design of all 
+Hadoop modules is "hardware failures are common occurrences and should be automatically handled by the framework".
+
+## What is Hadoop Distributed File System?
+
+Hadoop Distributed File System (HDFS) is a file system written in Java for the Hadoop Framework. The main advantage of HDFS is that it is 
+portable and scalable. Like other file systems, HDFS also provides Shell commands and Java application programming interface (API) methods.
+The HDFS services used with Kubernetes in this project are.
+
+1. Namenode : <br/>
+Hadoop Namenode acts like a Master Node which tracks files and manages the file system. It contains the information about the number of blocks,
+locations in which data and its replications are stored and various other information. The client directly connects with the Namenode.
+
+The Dockerfile used to build a Namenode image is :
+```
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/namenode/Dockerfile
+
+#Getting base hadoop image
+FROM bde2020/hadoop-base
+#FROM cloudmesh/docker-hadoop
+
+#Checking the health of the container
+HEALTHCHECK CMD curl -f http://localhost:9870/ || exit 1
+
+#Providing values for future environment variables
+ENV HDFS_CONF_dfs_namenode_name_dir=file:///hadoop/dfs/name
+
+#Creating a directory inside the docker image
+RUN mkdir -p /hadoop/dfs/name
+
+#Creating a volume for the docker image each time a container is started
+VOLUME /hadoop/dfs/name
+
+#Copying the file into the docker image
+COPY run.sh /root/run.sh
+
+#Changing the access persmissions of the file
+RUN chmod a+x /root/run.sh
+
+#Informing docker that the container listens on port 9870 at runtime
+EXPOSE 9870 8020
+
+#FROM ubuntu
+
+#Updating the apt package index
+#RUN apt-get update
+
+#Installing dos2unix
+#RUN apt-get install dos2unix
+
+#Dealing with docker line endings
+#RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+
+#Running the run.sh file during container creation
+CMD "/root/run.sh"
+```
+
+This [Dockerfile](cloudmesh/images/hadoop/namenode/Dockerfile) builds a Hadoop v3.2.1 Namenode image when the command **docker build -t [IMAGE NAME] .** is executed
+<br/>
+
+2. Datanode : <br/>
+Hadoop Datanode stores the actual data in the HDFS in the form of blocks. The Datanode acts as a Slave Node and is responsible for the client 
+to read and write. Every three seconds, the Datanode sends a 'heartbeat message' to the Namenode in order to convey that it is alive. Due to 
+this, if the Namenode does not receive a heartbeat message from the Datanode within three seconds, it will assume the Datanode to be dead and 
+will begin the replication processes on another Datanode.
+
+The Dockerfile used to build a Datanode image is :
+```
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/datanode/Dockerfile
+
+#Getting base hadoop image
+FROM bde2020/hadoop-base
+#FROM cloudmesh/docker-hadoop
+
+#Checking the health of the container
+HEALTHCHECK CMD curl -f http://localhost:9864/ || exit 1
+
+#Providing values for future environment variables
+ENV HDFS_CONF_dfs_datanode_data_dir=file:///hadoop/dfs/data
+
+#Creating a directory inside the docker image
+RUN mkdir -p /hadoop/dfs/data
+
+#Creating a volume for the docker image each time a container is started
+VOLUME /hadoop/dfs/data
+
+#Copying the file into the docker image
+COPY run.sh /root/run.sh
+
+#Changing the access persmissions of the file
+RUN chmod a+x /root/run.sh
+
+#Informing docker that the container listens on port 9864 at runtime
+EXPOSE 9864
+
+#FROM ubuntu
+
+#Updating the apt package index
+RUN apt-get update
+
+#Installing dos2unix
+RUN apt-get install dos2unix
+
+#Dealing with docker line endings
+RUN dos2unix /root/run.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+
+#Running the run.sh file during container creation
+CMD ["/root/run.sh"]
+```
+
+This [Dockerfile](cloudmesh/images/hadoop/datanode/Dockerfile) builds a Hadoop v3.2.1 Datanode image when the command **docker build -t [IMAGE NAME] .** is executed
+<br/>
+
 ## References
 
 https://blog.kumina.nl/2018/04/the-benefits-and-business-value-of-kubernetes/ <br/>
@@ -166,5 +284,6 @@ https://en.wikipedia.org/wiki/Kubernetes <br/>
 https://docs.docker.com/engine/reference/builder/ <br/>
 https://en.wikipedia.org/wiki/Docker_(software) <br/>
 https://docs.docker.com/v17.12/engine/reference/commandline/docker/ <br/>
+https://en.wikipedia.org/wiki/Apache_Hadoop <br/>
 
 
