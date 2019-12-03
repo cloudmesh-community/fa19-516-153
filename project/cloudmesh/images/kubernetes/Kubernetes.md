@@ -1,7 +1,27 @@
 ## Kubernetes
 
-Kubernetes is an open-source system that automates the scaling, management and deployment of containerized applications. 
-It groups the containers into logical units so that it can manage the containers easily.
+Kubernetes is an open-source system that automates the scaling, management and deployment of containerized applications based on the CPU, 
+memory or some custom metrics. It groups the containers into logical units so that it can manage the containers easily. The Kubernetes API
+provides a feature of extensibility to the containers that run on Kubernetes. This extensibility allows the user to work with Kubernetes
+on different workloads. Kubernetes works with a wide range of container tools. One such tool is Docker.
+
+Kubernetes manages resources in the form of Objects. The key objects of Kubernetes are :
+
+* Pods : <br/>
+A pod is the basic scheduling unit in Kubernetes. It consistes of one or more containers that can share resources and are co-located on the 
+host machine. Each pod has a unique IP address. Due to this IP address, applications are able to use ports without the risk of any conflict.
+This IP address is the means of communication between containers located in different pods. Containers in the same pod are able to communicate
+with each other on the localhost.
+
+* Replica Sets : <br/>
+Replica Sets are a mechanism that helps Kubernetes identify all the pods that are required to execute an application successfully. It maintains 
+the number of instances that have been declared for a given pod to use.
+
+* Services : <br/>
+A Kubernetes service is a collection of pods working together in order to run an application. A label selector defines the collection of pods 
+that consitute a service. Kubernetes can discover services either by using environmental variables or by using Kubernetes DNS. When Kubernetes
+discovers a service, an IP address and a DNS name is assigned to the service. A service is exposed inside a cluster by default. In order to enable 
+the clients to use the pods, a service can also be exposed outside a cluster if need be.
 
 ## What is Docker?
 
@@ -9,14 +29,14 @@ Docker is a service that uses operating system level virtualization in order to 
 containers can run on any Linux server. This feature provides flexibility. Docker containers can run on both public and private clouds. 
 They can also run on-premises. This feature provides portability. Docker is composed of three main components namely
 
-* Software :
+* Software : <br/>
 Docker has a software called **Docker Daemon** that manages Docker containers and the container objects.
 
-* Objects :
+* Objects : <br/>
 Docker objects are the different kinds of entities that are used to assemble an application in Docker. The different classes under which 
 Docker objects are categorized are images, containers, and services.
 
-* Registries :
+* Registries : <br/>
 A Docker registry is a repository that stores Docker images. Docker clients usually connect to these repositories in order to **pull** 
 images for their own use or in order to **push** images that they have built to the repository. Registries can be public or private.
 
@@ -60,7 +80,6 @@ RUN apt-get install --fix-missing -y -f openjdk-8-jre
 
 # Stable hadoop install
 ENV HADOOP_VERSION 3.2.1
-#ENV HADOOP_VERSION 2.7.5
 
 ENV HADOOP_URL https://archive.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 # for old versions ENV HADOOP_URL https://archive.apache.org/dist/hadoop/core/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
@@ -114,8 +133,10 @@ ENTRYPOINT ["./entrypoint.sh"]
 
 ## References
 
-https://docs.docker.com/engine/reference/builder/
-https://en.wikipedia.org/wiki/Docker_(software)
-https://docs.docker.com/v17.12/engine/reference/commandline/docker/
+https://blog.kumina.nl/2018/04/the-benefits-and-business-value-of-kubernetes/ <br/>
+https://en.wikipedia.org/wiki/Kubernetes <br/>
+https://docs.docker.com/engine/reference/builder/ <br/>
+https://en.wikipedia.org/wiki/Docker_(software) <br/>
+https://docs.docker.com/v17.12/engine/reference/commandline/docker/ <br/>
 
 
