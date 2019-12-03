@@ -69,6 +69,8 @@ The initialization and preparation steps will submit the requested shell script 
  - [Nomad](cloudmesh/images/nomad/build.sh)
 
 
+[Dockerfile for building a Hadoop Image](cloudmesh/images/hadoop/Dockerfile) <br/>
+
 [Dockerfile for Namenode](cloudmesh/images/hadoop/namenode/Dockerfile) <br/>
 [Shell Script to run Namenode](cloudmesh/images/hadoop/namenode/run.sh) <br/>
 
