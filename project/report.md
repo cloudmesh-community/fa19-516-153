@@ -29,8 +29,8 @@ source.
 
 ## Action
 
-In order to solve this problem, we will be implementing a Nomad and Kubernetes cluster, and
-generating a standalone Spark image that will run parameterized jobs,
+In order to solve this problem, we will be implementing a Nomad and [Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/Kubernetes.md) 
+cluster, and generating a standalone Spark image that will run parameterized jobs,
 utilizing all of the available multi-cloud options available to the orchestator
 as well as all of the compute instances.  We will also be implementing a testing
 service that will provide the cluster with the access to compute resources and
