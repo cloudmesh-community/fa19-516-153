@@ -349,4 +349,4 @@ https://en.wikipedia.org/wiki/Docker_(software) <br/>
 https://docs.docker.com/v17.12/engine/reference/commandline/docker/ <br/>
 https://en.wikipedia.org/wiki/Apache_Hadoop <br/>
 https://hadoop.apache.org/docs/r2.8.0/hadoop-yarn/hadoop-yarn-site/NodeManager.html <br/>
-
+https://blog.cloudera.com/apache-hadoop-yarn-resourcemanager/
