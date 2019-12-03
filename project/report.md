@@ -69,17 +69,17 @@ The initialization and preparation steps will submit the requested shell script 
  - [Nomad](cloudmesh/images/nomad/build.sh)
 
 
-[Dockerfile for Namenode](cloudmesh/images/hadoop/namenode/Dockerfile)
-[Shell Script to run Namenode](cloudmesh/images/hadoop/namenode/run.sh)
+[Dockerfile for Namenode](cloudmesh/images/hadoop/namenode/Dockerfile) <br/>
+[Shell Script to run Namenode](cloudmesh/images/hadoop/namenode/run.sh) <br/>
 
-[Dockerfile for Datanode](cloudmesh/images/hadoop/datanode/Dockerfile)
-[Shell Script to run Datanode](cloudmesh/images/hadoop/datanode/run.sh)
+[Dockerfile for Datanode](cloudmesh/images/hadoop/datanode/Dockerfile) <br/>
+[Shell Script to run Datanode](cloudmesh/images/hadoop/datanode/run.sh) <br/>
 
-[Dockerfile for Nodemanager](cloudmesh/images/hadoop/nodemanager/Dockerfile)
-[Shell Script to run Nodemanager](cloudmesh/images/hadoop/nodemanager/run.sh)
+[Dockerfile for Nodemanager](cloudmesh/images/hadoop/nodemanager/Dockerfile) <br/>
+[Shell Script to run Nodemanager](cloudmesh/images/hadoop/nodemanager/run.sh) <br/>
 
-[Dockerfile for Resourcemanager](cloudmesh/images/hadoop/resourcemanager/Dockerfile)
-[Shell Script to run Resourcemanager](cloudmesh/images/hadoop/resourcemanager/run.sh)
+[Dockerfile for Resourcemanager](cloudmesh/images/hadoop/resourcemanager/Dockerfile) <br/>
+[Shell Script to run Resourcemanager](cloudmesh/images/hadoop/resourcemanager/run.sh) <br/>
 
 
 ### Deployment
