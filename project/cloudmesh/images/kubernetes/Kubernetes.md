@@ -8,20 +8,48 @@ on different workloads. Kubernetes works with a wide range of container tools. O
 Kubernetes manages resources in the form of Objects. The key objects of Kubernetes are :
 
 * Pods : <br/>
-A pod is the basic scheduling unit in Kubernetes. It consistes of one or more containers that can share resources and are co-located on the 
-host machine. Each pod has a unique IP address. Due to this IP address, applications are able to use ports without the risk of any conflict.
-This IP address is the means of communication between containers located in different pods. Containers in the same pod are able to communicate
-with each other on the localhost.
+A pod is the basic scheduling unit in Kubernetes. It consistes of one or more containers that can share resources and are co-located on 
+the host machine. Each pod has a unique IP address. Due to this IP address, applications are able to use ports without the risk of any 
+conflict. This IP address is the means of communication between containers located in different pods. Containers in the same pod are able 
+to communicate with each other on the localhost.
 
 * Replica Sets : <br/>
-Replica Sets are a mechanism that helps Kubernetes identify all the pods that are required to execute an application successfully. It maintains 
-the number of instances that have been declared for a given pod to use.
+Replica Sets are a mechanism that helps Kubernetes identify all the pods that are required to execute an application successfully. It 
+maintains the number of instances that have been declared for a given pod to use.
 
 * Services : <br/>
-A Kubernetes service is a collection of pods working together in order to run an application. A label selector defines the collection of pods 
-that consitute a service. Kubernetes can discover services either by using environmental variables or by using Kubernetes DNS. When Kubernetes
-discovers a service, an IP address and a DNS name is assigned to the service. A service is exposed inside a cluster by default. In order to enable 
-the clients to use the pods, a service can also be exposed outside a cluster if need be.
+A Kubernetes service is a collection of pods working together in order to run an application. A label selector defines the collection of 
+pods that consitute a service. Kubernetes can discover services either by using environmental variables or by using Kubernetes DNS. When 
+Kubernetes discovers a service, an IP address and a DNS name is assigned to the service. A service is exposed inside a cluster by default. 
+In order to enable the clients to use the pods, a service can also be exposed outside a cluster if need be.
+
+* Volumes : <br/>
+A Kubernetes volume stores the container data. Unlike file systems, the stored data will not be wiped out from a Kubernetes volume 
+whenever the pod is restarted. The container data is stored in the Kubernetes volume as long as the lifetime the pod. The pod configuration 
+defines specific mount points within the container. The Kubernetes volume is mounted at these mount points. Sometimes, the same volume can 
+be mounted at different points by different containers.
+
+* Namespaces : <br/>
+Non-overlapping spaces into which the Kubernetes resourcesa are partitioned are called Kubernetes namespaces. Namespaces are intended to be 
+used in environments where there are many users working in multiple teams. It even separates the different environments such as development, 
+test, and production.
+
+* ConfigMaps and Secrets : <br/>
+ConfigMaps and Secrets are Kubernetes features that allow changes to be made to the configuration information of an application without 
+actually needing to build the application. Every single instance of the application will have access to the data from configmaps and secrets. 
+This data is only sent to a node if it is required by the pod on that node. Kubernetes stores this data in the memory of the node. Once the 
+pod that is using the data from configmaps and secrets is deleted, the data stored in the memory of the nodes is deleted as well. The pod can 
+access this data in the form of environment variables or from the container filesystem visible only from within the pod. The content of the 
+data in a secret is base64 encoded which is not the case in configmaps.
+
+* StatefulSets : <br/>
+StatefulSets are controllers that ensure that the pod instances are unique and ordered. Using Kubernetes StatefulSets ensures that even if 
+the pod is restarted, the state of the application is still preserved. The state may be needed to be redistributed if the application is 
+scaled either up or down.
+
+* DaemonSets : <br/>
+DaemonSets are a Kubernetes feature that enables implementation of pod scheduling such that a pod runs on every single node in the cluster.
+DaemonSets are used for collection of logs and various storage services.
 
 ## What is Docker?
 
