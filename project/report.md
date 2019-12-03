@@ -68,6 +68,8 @@ The initialization and preparation steps will submit the requested shell script 
  - [Kubernetes](cloudmesh/images/kubernetes/build.sh)
  - [Nomad](cloudmesh/images/nomad/build.sh)
 
+We are using the Hadoop Distributed File System (HDFS) of Hadoop v3.2.1 to build docker images of the HDFS services namely Namenode, Datanode, 
+Nodemanager and Resourcemanager. The following are the Dockerfiles for each HDFS service.
 
 [Dockerfile for building a Hadoop Image](cloudmesh/images/hadoop/Dockerfile) <br/>
 
