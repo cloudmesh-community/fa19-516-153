@@ -221,7 +221,7 @@ EXPOSE 9870 8020
 CMD "/root/run.sh"
 ```
 
-This [Dockerfile](cloudmesh/images/hadoop/namenode/Dockerfile) builds a Hadoop v3.2.1 Namenode image when the command **docker build -t [IMAGE NAME] .** is executed
+This [Dockerfile](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/hadoop/namenode/Dockerfile) builds a Hadoop v3.2.1 Namenode image when the command **docker build -t [IMAGE NAME] .** is executed
 <br/>
 
 2. Datanode : <br/>
@@ -274,7 +274,7 @@ RUN dos2unix /root/run.sh && apt-get --purge remove -y dos2unix && rm -rf /var/l
 CMD ["/root/run.sh"]
 ```
 
-This [Dockerfile](cloudmesh/images/hadoop/datanode/Dockerfile) builds a Hadoop v3.2.1 Datanode image when the command **docker build -t [IMAGE NAME] .** is executed
+This [Dockerfile](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/hadoop/datanode/Dockerfile) builds a Hadoop v3.2.1 Datanode image when the command **docker build -t [IMAGE NAME] .** is executed
 <br/>
 
 ## References
