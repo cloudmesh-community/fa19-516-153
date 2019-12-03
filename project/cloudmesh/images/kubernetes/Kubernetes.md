@@ -30,7 +30,7 @@ defines specific mount points within the container. The Kubernetes volume is mou
 be mounted at different points by different containers.
 
 * Namespaces : <br/>
-Non-overlapping spaces into which the Kubernetes resourcesa are partitioned are called Kubernetes namespaces. Namespaces are intended to be 
+Non-overlapping spaces into which the Kubernetes resources are partitioned are called Kubernetes namespaces. Namespaces are intended to be 
 used in environments where there are many users working in multiple teams. It even separates the different environments such as development, 
 test, and production.
 
@@ -277,6 +277,69 @@ CMD ["/root/run.sh"]
 This [Dockerfile](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/hadoop/datanode/Dockerfile) builds a Hadoop v3.2.1 Datanode image when the command **docker build -t [IMAGE NAME] .** is executed
 <br/>
 
+3. Nodemanager : <br/>
+Hadoop NodeManager launches and manages containers on a node. The AppMaster specifies the tasks to be executed by the containers. The 
+Nodmanager runs services in order to determine whether the node and the disks are healthy or not. If the Nodemanager determines that a 
+particular node is not healthy, then it communicates this information to the Hadoop Resourcemanager which stops assigning containers to 
+that particular node.
+
+The Dockerfile used to build a Nodemanager image is :
+```
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/nodemanager/Dockerfile
+
+#Getting base hadoop image
+FROM bde2020/hadoop-base
+#FROM cloudmesh/docker-hadoop
+
+#Checking the health of the container
+HEALTHCHECK CMD curl -f http://localhost:8042/ || exit 1
+
+#Copying the file into the docker image
+COPY run.sh /root/run.sh
+
+#Changing the access persmissions of the file
+RUN chmod a+x /root/run.sh
+
+#Informing docker that the container listens on port 8042 at runtime
+EXPOSE 8042
+
+#Running the run.sh file during container creation
+CMD ["/root/run.sh"]
+```
+
+This [Dockerfile](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/hadoop/nodemanager/Dockerfile) builds a Hadoop v3.2.1 Nodemanager image when the command **docker build -t [IMAGE NAME] .** is executed
+
+4. Resourcemanager : <br/>
+Hadoop Resourcemanager manages the distributed applications that run on a Hadoop system by arbitrating the resources of all the available 
+clusters. It works in coordination with the Nodemanager. It stops assigning containers to a particular node if the Nodemanager finds that 
+node to be unhealthy.
+
+The Dockerfile used to build a Resourcemanager image is :
+```
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/resourcemanager/Dockerfile
+
+#Getting base hadoop image
+FROM bde2020/hadoop-base
+#FROM cloudmesh/docker-hadoop
+
+#Checking the health of the container
+HEALTHCHECK CMD curl -f http://localhost:8088/ || exit 1
+
+#Copying the file into the docker image
+COPY run.sh /root/run.sh
+
+#Changing the access persmissions of the file
+RUN chmod a+x /root/run.sh
+
+#Informing docker that the container listens on port 8088 at runtime
+EXPOSE 8088
+
+#Running the run.sh file during container creation
+CMD ["/root/run.sh"]
+```
+
+This [Dockerfile](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/hadoop/resourcemanager/Dockerfile) builds a Hadoop v3.2.1 Resourcemanager image when the command **docker build -t [IMAGE NAME] .** is executed
+
 ## References
 
 https://blog.kumina.nl/2018/04/the-benefits-and-business-value-of-kubernetes/ <br/>
@@ -285,5 +348,5 @@ https://docs.docker.com/engine/reference/builder/ <br/>
 https://en.wikipedia.org/wiki/Docker_(software) <br/>
 https://docs.docker.com/v17.12/engine/reference/commandline/docker/ <br/>
 https://en.wikipedia.org/wiki/Apache_Hadoop <br/>
-
+https://hadoop.apache.org/docs/r2.8.0/hadoop-yarn/hadoop-yarn-site/NodeManager.html <br/>
 
