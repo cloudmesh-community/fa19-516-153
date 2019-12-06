@@ -25,4 +25,4 @@ RUN chmod a+x /root/run.sh
 EXPOSE 9870
 
 #Running the run.sh file during container creation
-CMD ["/bin/bash"]
+CMD ["root/run.sh"]

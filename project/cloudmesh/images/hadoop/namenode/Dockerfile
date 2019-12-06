@@ -37,4 +37,4 @@ EXPOSE 9870 8020
 #RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
 
 #Running the run.sh file during container creation
-CMD "/root/run.sh"
+CMD ["/root/run.sh"]

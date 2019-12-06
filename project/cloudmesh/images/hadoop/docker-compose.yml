@@ -10,20 +10,50 @@ services:
     stdin_open: true
     tty: true
     
+  #namenode:
+  #  image: cloudmesh/docker-hadoop-namenode
+  #  build: ./namenode
+  #  hostname: namenode
+  #  container_name: namenode
+  #  domainname: hadoop
+  #  networks:
+  #    - hbase
+  #  volumes:
+  #    - namenode-volume:/hadoop/dfs/name
+  #  environment:
+  #    - GANGLIA_HOST=localhost
+  #    - CLUSTER_NAME=cloudmesh-hadoop
+  #  env_file: ./hadoop.env
+  #  depends_on:
+  #    - hadoop-build
+  
   namenode:
-    image: cloudmesh/docker-hadoop-namenode
+    image: smirjank/cloudmesh_namenode:latest
+    #build: ./Hadoop/namenode/.
     build: ./namenode
-    hostname: namenode
-    container_name: namenode
-    domainname: hadoop
     networks:
       - hbase
     volumes:
+    #  - namenode:/hadoop/dfs/name
       - namenode-volume:/hadoop/dfs/name
     environment:
-      - GANGLIA_HOST=localhost
-      - CLUSTER_NAME=cloudmesh-hadoop
-    env_file: ./hadoop.env
+      - CLUSTER_NAME=test
+    env_file:
+      - ./hadoop.env
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.hostname == akswnc4.aksw.uni-leipzig.de
+      labels:
+        traefik.docker.network: hbase
+        traefik.port: 50070
+
+    environment: 
+      - CLUSTER_NAME=test
     depends_on:
       - hadoop-build
     
