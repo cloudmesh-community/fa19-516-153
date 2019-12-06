@@ -28,7 +28,7 @@ services:
   #    - hadoop-build
   
   namenode:
-    image: smirjank/cloudmesh_namenode:latest
+    image: cloudmesh/docker-hadoop-namenode
     #build: ./Hadoop/namenode/.
     build: ./namenode
     networks:
@@ -37,7 +37,8 @@ services:
     #  - namenode:/hadoop/dfs/name
       - namenode-volume:/hadoop/dfs/name
     environment:
-      - CLUSTER_NAME=test
+      - GANGLIA_HOST=localhost
+      - CLUSTER_NAME=cloudmesh-hadoop
     env_file:
       - ./hadoop.env
     deploy:
@@ -50,10 +51,7 @@ services:
           - node.hostname == akswnc4.aksw.uni-leipzig.de
       labels:
         traefik.docker.network: hbase
-        traefik.port: 50070
-
-    environment: 
-      - CLUSTER_NAME=test
+        traefik.port: 5007
     depends_on:
       - hadoop-build
     

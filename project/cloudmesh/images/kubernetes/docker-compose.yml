@@ -28,6 +28,17 @@ services:
 
     environment: 
       - CLUSTER_NAME=test
+      
+  ping-namenode:
+    image: ubuntu:18.04
+    stdin_open: true
+    tty: true
+    networks:
+      - hbase
+    links:
+      - namenode
+    depends_on:
+      - namenode
 
   datanode:
     image: smirjank/cloudmesh_datanode:latest
@@ -47,6 +58,8 @@ services:
       labels:
         traefik.docker.network: hbase
         traefik.port: 50075
+    depends_on:
+      - namenode
 
   resourcemanager:
     image: smirjank/cloudmesh_resourcemanager:latest
