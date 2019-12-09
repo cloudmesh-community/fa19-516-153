@@ -144,3 +144,8 @@ RUN dos2unix ./entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /va
 
 #Running all commands together
 docker-compose up
+
+#Installing make command on anaconda
+conda install -c anaconda make
+
+docker build -t bde2020/hadoop-base:master ./base

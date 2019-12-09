@@ -16,13 +16,13 @@ RUN mkdir -p /hadoop/dfs/name
 VOLUME /hadoop/dfs/name
 
 #Copying the file into the docker image
-COPY run.sh /root/run.sh
+ADD run.sh /run.sh
 
 #Changing the access persmissions of the file
-RUN chmod a+x /root/run.sh
+RUN chmod a+x /run.sh
 
 #Informing docker that the container listens on port 9870 at runtime
 EXPOSE 9870
 
 #Running the run.sh file during container creation
-CMD ["root/run.sh"]
+CMD ["/run.sh"]
