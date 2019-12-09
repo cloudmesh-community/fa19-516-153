@@ -4,27 +4,71 @@ services:
   hadoop-build:
     image: cloudmesh/docker-hadoop
     build: .
-    command: "exit 0"
+    #volumes:
+    #  - ./config:/etc/hadoop/.
+      
+    stdin_open: true
+    tty: true
     
+  #namenode:
+  #  image: cloudmesh/docker-hadoop-namenode
+  #  build: ./namenode
+  #  hostname: namenode
+  #  container_name: namenode
+  #  domainname: hadoop
+  #  networks:
+  #    - hbase
+  #  volumes:
+  #    - namenode-volume:/hadoop/dfs/name
+  #  environment:
+  #    - GANGLIA_HOST=localhost
+  #    - CLUSTER_NAME=cloudmesh-hadoop
+  #  env_file: ./hadoop.env
+  #  depends_on:
+  #    - hadoop-build
+  
   namenode:
     image: cloudmesh/docker-hadoop-namenode
+    #build: ./Hadoop/namenode/.
     build: ./namenode
-    hostname: namenode
-    container_name: namenode
-    domainname: hadoop
     networks:
       - hbase
     volumes:
+    #  - namenode:/hadoop/dfs/name
       - namenode-volume:/hadoop/dfs/name
     environment:
       - GANGLIA_HOST=localhost
       - CLUSTER_NAME=cloudmesh-hadoop
-    env_file: ./hadoop.env
+    env_file:
+      - ./hadoop.env
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.hostname == akswnc4.aksw.uni-leipzig.de
+      labels:
+        traefik.docker.network: hbase
+        traefik.port: 5007
     depends_on:
       - hadoop-build
+    
+      
+  ping-namenode:
+    image: ubuntu:18.04
+    stdin_open: true
+    tty: true
+    networks:
+      - hbase
+    links:
+      - namenode
+    depends_on:
+      - namenode
 
   datanode:
-    image: uhopper/hadoop-datanode
+    image: cloudmesh/docker-hadoop-datanode
     build: ./datanode
     hostname: datanode1
     container_name: datanode1
@@ -42,7 +86,7 @@ services:
       - namenode
 
   resourcemanager:
-    image: uhopper/hadoop-resourcemanager
+    image: cloudmesh/docker-hadoop-resourcemanager
     build: ./resourcemanager
     hostname: resourcemanager
     container_name: resourcemanager
@@ -59,7 +103,7 @@ services:
       - namenode
 
   nodemanager:
-    image: uhopper/hadoop-nodemanager
+    image: cloudmesh/docker-hadoop-nodemanager
     build: ./nodemanager
     hostname: nodemanager1
     container_name: nodemanager1

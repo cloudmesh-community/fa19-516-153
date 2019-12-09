@@ -1,0 +1,67 @@
+<!-- Referred https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html -->
+
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+	<property>
+		<name>mapreduce.framework.name</name>
+		<value>yarn</value> 
+		<final>true</final> 
+	</property> 
+    <property>
+		<name>mapreduce.map.memory.mb</name>
+		<value>1536</value>
+		<final>true</final> 
+	</property> 
+	<property> 
+		<name>mapreduce.map.java.opts</name>
+		<value>-Xmx1024M</value> 
+		<final>true</final> 
+	</property>
+	<property> 
+		<name>mapreduce.reduce.memory.mb</name>
+		<value>3072</value> 
+		<final>true</final> 
+	</property>
+	<property> 
+		<name>mapreduce.reduce.java.opts</name>
+		<value>-Xmx2560M</value> 
+		<final>true</final> 
+	</property>
+	<property>
+		<name>mapreduce.task.io.sort.mb</name>
+		<value>512</value> 
+		<final>true</final> 
+	</property> 
+    <property>
+		<name>mapreduce.task.io.sort.factor</name>
+		<value>100</value>
+		<final>true</final> 
+	</property> 
+	<property> 
+		<name>mapreduce.reduce.shuffle.parallelcopies</name>
+		<value>50</value> 
+		<final>true</final> 
+	</property>
+	<property> 
+		<name>mapreduce.jobhistory.address</name>
+		<value>10020</value> 
+		<final>true</final> 
+	</property>
+	<property> 
+		<name>mapreduce.jobhistory.webapp.address</name>
+		<value>19888</value> 
+		<final>true</final> 
+	</property>
+	<property> 
+		<name>mapreduce.jobhistory.intermediate-done-dir</name>
+		<value>/mr-history/tmp</value> 
+		<final>true</final> 
+	</property>
+	<property> 
+		<name>mapreduce.jobhistory.done-dir</name>
+		<value>/mr-history/done</value> 
+		<final>true</final> 
+	</property>
+</configuration>

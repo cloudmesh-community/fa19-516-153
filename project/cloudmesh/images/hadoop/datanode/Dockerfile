@@ -1,7 +1,8 @@
 #Referred https://github.com/big-data-europe/docker-hadoop/blob/master/datanode/Dockerfile
 
 #Getting base hadoop image
-FROM cloudmesh/docker-hadoop
+FROM bde2020/hadoop-base
+#FROM cloudmesh/docker-hadoop
 
 #Checking the health of the container
 HEALTHCHECK CMD curl -f http://localhost:9864/ || exit 1
@@ -16,13 +17,24 @@ RUN mkdir -p /hadoop/dfs/data
 VOLUME /hadoop/dfs/data
 
 #Copying the file into the docker image
-ADD run.sh /run.sh
+COPY run.sh /root/run.sh
 
 #Changing the access persmissions of the file
-RUN chmod a+x /run.sh
+RUN chmod a+x /root/run.sh
 
 #Informing docker that the container listens on port 9864 at runtime
 EXPOSE 9864
 
+#FROM ubuntu
+
+#Updating the apt package index
+RUN apt-get update
+
+#Installing dos2unix
+RUN apt-get install dos2unix
+
+#Dealing with docker line endings
+RUN dos2unix /root/run.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+
 #Running the run.sh file during container creation
-CMD ["/run.sh"]
+CMD ["/root/run.sh"]

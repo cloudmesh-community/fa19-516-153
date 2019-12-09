@@ -1,11 +1,10 @@
 #Referred https://github.com/big-data-europe/docker-hadoop/blob/master/docker-compose-v3.yml
 
-version: "3.7"
+version: '3'
 
 services:
   namenode:
-    image: smirjank/cloudmesh_namenode:latest
-    build: ./Hadoop/namenode/.
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.1.3-java8
     networks:
       - hbase
     volumes:
@@ -26,23 +25,8 @@ services:
         traefik.docker.network: hbase
         traefik.port: 50070
 
-    environment: 
-      - CLUSTER_NAME=test
-      
-  ping-namenode:
-    image: ubuntu:18.04
-    stdin_open: true
-    tty: true
-    networks:
-      - hbase
-    links:
-      - namenode
-    depends_on:
-      - namenode
-
   datanode:
-    image: smirjank/cloudmesh_datanode:latest
-    build: ./Hadoop/datanode/.
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.1.3-java8
     networks:
       - hbase
     volumes:
@@ -58,12 +42,9 @@ services:
       labels:
         traefik.docker.network: hbase
         traefik.port: 50075
-    depends_on:
-      - namenode
 
   resourcemanager:
-    image: smirjank/cloudmesh_resourcemanager:latest
-    build: ./Hadoop/resourcemanager/.
+    image: bde2020/hadoop-resourcemanager:2.0.0-hadoop3.1.3-java8
     networks:
       - hbase
     environment:
@@ -85,8 +66,7 @@ services:
       disable: true
 
   nodemanager:
-    image: smirjank/cloudmesh_nodemanager:latest
-    build: ./Hadoop/nodemanager/.
+    image: bde2020/hadoop-nodemanager:2.0.0-hadoop3.1.3-java8
     networks:
       - hbase
     environment:
@@ -102,12 +82,11 @@ services:
         traefik.port: 8042
 
   historyserver:
-    image: smirjank/cloudmesh_historyserver:latest
-    build: ./Hadoop/historyserver/.
+    image: bde2020/hadoop-historyserver:2.0.0-hadoop3.1.3-java8
     networks:
       - hbase
     volumes:
-      - hadoop_historyserver:/hadoop/yarn/timeline
+      - hadoop-historyserver:/hadoop/yarn/timeline
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
     env_file:

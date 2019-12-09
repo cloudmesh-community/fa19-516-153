@@ -1,0 +1,17 @@
+<!-- Referred https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html -->
+
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+	<property>
+		<name>fs.defaultFS</name>
+		<value>8080</value> 
+		<final>true</final> 
+	</property>
+	<property>
+		<name>io.file.buffer.size</name>
+		<value>8080</value> 
+		<final>131072</final> 
+	</property>
+</configuration>

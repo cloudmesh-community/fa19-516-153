@@ -1,8 +1,10 @@
 # Spark Cluster Management Abstraction Layer
+
 Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
 Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
 
 Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
+
 
 ## Problem
 
@@ -15,7 +17,6 @@ especially beneficial to data teams that require dynamic storage solutions and
 want the flexibility to move between cloud platforms with ease. 
       
 
-
 ## Proposal
 
 We will be exploring options for an implementation of Apache Spark that can be
@@ -26,11 +27,10 @@ data transfer to be contained within the cluster itself, rather than a data
 source.
 
 
-
 ## Action
 
-In order to solve this problem, we will be implementing a Nomad and Kubernetes cluster, and
-generating a standalone Spark image that will run parameterized jobs,
+In order to solve this problem, we will be implementing a Nomad and [Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/Kubernetes.md) 
+cluster, and generating a standalone Spark image that will run parameterized jobs,
 utilizing all of the available multi-cloud options available to the orchestator
 as well as all of the compute instances.  We will also be implementing a testing
 service that will provide the cluster with the access to compute resources and
@@ -55,6 +55,7 @@ cluster list
 ```
 [Source](cloudmesh/cluster/command/cluster.py)
 
+
 ### Interaction
 
 We are interacting with the nomad and kubernetes REST APIs to dynamically modify and interact with the cluster/agent configurations while jobs are running.  For each interaction, cloudmesh queries the appropriate provider's API to perform the action to avoid managing a local state.
@@ -64,10 +65,29 @@ We are interacting with the nomad and kubernetes REST APIs to dynamically modify
 
 Using this mechanism, cloudmesh will be able to simultaneously initialize and prepare machines in a cluster while building and deploying the images.  
 The initialization and preparation steps will submit the requested shell script to each machine added to the cluster:
- - [Kubernetes](cloudmesh/images/kubernetes/walkthrough.sh)
+ - [Kubernetes](cloudmesh/images/kubernetes/build.sh)
  - [Nomad](cloudmesh/images/nomad/build.sh)
 
+We are using the Hadoop Distributed File System (HDFS) of Hadoop v3.2.1 to build docker images of the HDFS services namely Namenode, Datanode, 
+Nodemanager and Resourcemanager. The following are the Dockerfiles for each HDFS service.
+
+[Dockerfile for building a Hadoop Image](cloudmesh/images/hadoop/Dockerfile) <br/>
+
+[Dockerfile for Namenode](cloudmesh/images/hadoop/namenode/Dockerfile) <br/>
+[Shell Script to run Namenode](cloudmesh/images/hadoop/namenode/run.sh) <br/>
+
+[Dockerfile for Datanode](cloudmesh/images/hadoop/datanode/Dockerfile) <br/>
+[Shell Script to run Datanode](cloudmesh/images/hadoop/datanode/run.sh) <br/>
+
+[Dockerfile for Nodemanager](cloudmesh/images/hadoop/nodemanager/Dockerfile) <br/>
+[Shell Script to run Nodemanager](cloudmesh/images/hadoop/nodemanager/run.sh) <br/>
+
+[Dockerfile for Resourcemanager](cloudmesh/images/hadoop/resourcemanager/Dockerfile) <br/>
+[Shell Script to run Resourcemanager](cloudmesh/images/hadoop/resourcemanager/run.sh) <br/>
+
+
 ### Deployment
+
 When submitting a job to each of these providers, cloudmesh will first build the requested image:
  - [Hadoop](cloudmesh/images/hadoop/Dockerfile)
  - Spark - __TODO__
