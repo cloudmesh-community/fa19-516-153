@@ -342,19 +342,19 @@ This [Dockerfile](https://github.com/cloudmesh-community/fa19-516-153/blob/maste
 
 ## How to start a Kubernetes Cluster?
 
-Step 1 : Make sure you are in the [hadoop](cloudmesh/images/kubernetes/Hadoop) directory.
+Step 1 : Make sure you are in the [hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop) directory.
 
 Step 2 : Run docker-compose to aggregate the output of all the dockerfiles.
 ```
 docker-compose up
 ```
 
-Step 3 : Run all the build commands in the [Makefile](cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 3 : Run all the build commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 ```
 make build
 ```
 
-Step 4 : Run all the run commands in the [Makefile](cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 4 : Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 ```
 make run
 ```
