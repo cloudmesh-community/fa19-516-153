@@ -96,7 +96,7 @@ When submitting a job to each of these providers, cloudmesh will first build the
 And submit the jobfile to the cluster using the provider's REST API.
 
 
-### How to run the code?
+### How to start a Kubernetes Cluster?
 
 Step 1 : Make sure you are in the [hadoop](cloudmesh/images/kubernetes/Hadoop) directory.
 
@@ -114,6 +114,13 @@ Step 4 : Run all the run commands in the [Makefile](cloudmesh/images/kubernetes/
 ```
 make run
 ```
+
+### Possible Errors
+
+A very common error caused while running this code is **standard_init_linux.go:211: exec user process caused "exec format error"**. In order to rectify 
+this error, one must use a Linux or Mac Machine/VM to run the code. If this code is being run on a Windows Machine, make sure that the line endings of 
+each file is changed from Windows(CLRF) to Unix(LF).
+
 
 Sources:
 - [Kubernetes](https://kubernetes.io/docs/setup/#production-environment)
