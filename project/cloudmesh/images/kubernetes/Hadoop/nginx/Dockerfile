@@ -1,13 +1,11 @@
 #Referred https://github.com/big-data-europe/docker-hadoop/blob/master/nginx/Dockerfile
 
-#Getting base ngnix image
+#Getting base hadoop image
 FROM nginx
 
-#Copying the configuration file to the desired location
-COPY config.conf /etc/nginx/conf.d/config.conf
+#Copying the configuration file to required directory
+COPY default.conf /etc/nginx/conf.d/default.conf
 
-#Copying the materialize file to the desired location
+#Copying the cascading style sheet files to required directory
 COPY materialize.min.css /data/bde-css/materialize.min.css
-
-#Copying the hadoop file to the desired location
-COPY hadoop.css /data/bde-css/hadoop.css
+COPY bde-hadoop.css /data/bde-css/bde-hadoop.css
