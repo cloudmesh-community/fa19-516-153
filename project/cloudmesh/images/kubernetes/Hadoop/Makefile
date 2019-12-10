@@ -13,7 +13,7 @@ build:
 	docker build -t bde2020/hadoop-historyserver:$(current_branch) ./historyserver
 	docker build -t bde2020/hadoop-submit:$(current_branch) ./submit
 
-run:
+wordcount:
 	docker build -t hadoop-wordcount ./submit
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(current_branch) hdfs dfs -mkdir -p /input/
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:$(current_branch) hdfs dfs -copyFromLocal -f /opt/hadoop-3.1.3/README.txt /input/

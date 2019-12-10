@@ -3,8 +3,6 @@
 #!/bin/bash
 
 datadir=`echo $HDFS_CONF_dfs_datanode_data_dir | perl -pe 's#file://##'`
-
-#Checking whether the directory of datanode is found
 if [ ! -d $datadir ]; then
   echo "Datanode data directory not found: $datadir"
   exit 2

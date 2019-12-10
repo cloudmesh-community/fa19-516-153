@@ -17,12 +17,3 @@ EXPOSE 8088
 
 #Running the run.sh file during container creation
 CMD ["/run.sh"]
-
-
-
-
-
-
-
-
-
