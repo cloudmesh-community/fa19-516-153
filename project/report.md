@@ -105,12 +105,12 @@ Step 2 : Run docker-compose to aggregate the output of all the dockerfiles.
 docker-compose up
 ```
 
-Step 3 : Run all the build commands in the [Makefile](cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 3 : Run all the build commands in the [Makefile](cloudmesh/images/kubernetes/Hadoop)
 ```
 make build
 ```
 
-Step 4 : Run all the run commands in the [Makefile](cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 4 : Run all the run commands in the [Makefile](cloudmesh/images/kubernetes/Hadoop)
 ```
 make run
 ```
