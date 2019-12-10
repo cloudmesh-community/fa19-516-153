@@ -340,7 +340,7 @@ CMD ["/root/run.sh"]
 
 This [Dockerfile](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/hadoop/resourcemanager/Dockerfile) builds a Hadoop v3.2.1 Resourcemanager image when the command **docker build -t [IMAGE NAME] .** is executed
 
-### How to start a Kubernetes Cluster?
+## How to start a Kubernetes Cluster?
 
 Step 1 : Make sure you are in the [hadoop](cloudmesh/images/kubernetes/Hadoop) directory.
 
@@ -359,7 +359,7 @@ Step 4 : Run all the run commands in the [Makefile](cloudmesh/images/kubernetes/
 make run
 ```
 
-### Possible Errors
+## Possible Errors
 
 A very common error caused while running this code is **standard_init_linux.go:211: exec user process caused "exec format error"**. In order to rectify 
 this error, one must use a Linux or Mac Machine/VM to run the code. If this code is being run on a Windows Machine, make sure that the line endings of 
