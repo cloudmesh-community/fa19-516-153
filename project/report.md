@@ -96,6 +96,17 @@ When submitting a job to each of these providers, cloudmesh will first build the
 And submit the jobfile to the cluster using the provider's REST API.
 
 
+### How to run the code?
+
+Step 1 : Make sure you are in the [hadoop](cloudmesh/images/kubernetes/Hadoop) directory.
+
+Step 2 : Run docker-compose to aggregate the output of all the dockerfiles.
+```
+docker-compose up
+```
+
+Step 3 : Run all the build commands in the [Makefile](cloudmesh/images/kubernetes/Hadoop/Makefile)
+
 Sources:
 - [Kubernetes](https://kubernetes.io/docs/setup/#production-environment)
 - [Nomad](https://www.nomadproject.io/guides/install/production/index.html)
