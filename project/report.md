@@ -55,6 +55,13 @@ interacting with the cluster, and deploying jobs to the cluster. We are
 developing a command, `cms cluster`, that will perform all of these
 actions efficiently.
 
+:o2: please review the host command in cloudmesh-inventory. Ideally we
+should merge the commands. The reason I could not see what you did is
+that you did not use proper markdown, so all your links did not work.
+Thus instead of calling the command in inventory cluster I called it
+host to simplify the merging. Please remember that merging is part of
+this review process. We need that functionality only once.
+
 The following commands will be integrated into the cloudmesh service:
 
 ```
