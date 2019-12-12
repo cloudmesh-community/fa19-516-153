@@ -1,4 +1,4 @@
-# Spark Cluster Management Abstraction Layer
+## Spark Cluster Management Abstraction Layer
 
 * Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
 * Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
@@ -131,7 +131,7 @@ build the requested image:
 And submit the jobfile to the cluster using the provider's REST API.
 
 
-### How to start a Kubernetes Cluster?
+### How to start a Hadoop Cluster?
 
 Step 1: Make sure you are in the [hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop) directory.
 
@@ -150,7 +150,7 @@ $ make build
 Step 4: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
-$ make run
+$ make wordcount
 ```
 
 ### Possible Errors
