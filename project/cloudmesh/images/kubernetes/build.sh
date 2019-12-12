@@ -148,4 +148,5 @@ docker-compose up
 #Installing make command on anaconda
 conda install -c anaconda make
 
-docker build -t bde2020/hadoop-base:master ./base
+#Configuring github to commit LF(Unix) line endings
+git config --global core.autocrlf false
