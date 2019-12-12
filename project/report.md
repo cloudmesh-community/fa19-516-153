@@ -12,7 +12,9 @@
 
 :o2: all most hyperlinks are not working
 
-:o2: we can not review your project dud to the trivial markdown errors. please review your document in the epub not in github we only look at the epub
+:o2: we can not review your project dud to the trivial markdown errors.
+please review your document in the epub not in github we only look at
+the epub
 
 ## Problem
 
@@ -80,7 +82,11 @@ cluster list
 
 ### Interaction
 
-We are interacting with the nomad and kubernetes REST APIs to dynamically modify and interact with the cluster/agent configurations while jobs are running.  For each interaction, cloudmesh queries the appropriate provider's API to perform the action to avoid managing a local state.
+We are interacting with the nomad and kubernetes REST APIs to
+dynamically modify and interact with the cluster/agent configurations
+while jobs are running.  For each interaction, cloudmesh queries the
+appropriate provider's API to perform the action to avoid managing a
+local state.
 
 
 ### Initialization
@@ -127,21 +133,21 @@ And submit the jobfile to the cluster using the provider's REST API.
 
 ### How to start a Kubernetes Cluster?
 
-Step 1 : Make sure you are in the [hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop) directory.
+Step 1: Make sure you are in the [hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop) directory.
 
-Step 2 : Run docker-compose to aggregate the output of all the dockerfiles.
+Step 2: Run docker-compose to aggregate the output of all the dockerfiles.
 
 ```bash
 $ docker-compose up
 ```
 
-Step 3 : Run all the build commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 3: Run all the build commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
 $ make build
 ```
 
-Step 4 : Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 4: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
 $ make run
