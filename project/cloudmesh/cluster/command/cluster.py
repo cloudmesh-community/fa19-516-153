@@ -1,12 +1,12 @@
 from __future__ import print_function
-from cloudmesh.shell.command import command
-from cloudmesh.shell.command import PluginCommand
+from cloudmesh.shell.command import command, map_parameters, PluginCommand
 from cloudmesh.cluster.api.manager import Manager
 from cloudmesh.common.console import Console
 from cloudmesh.common.util import path_expand
 from pprint import pprint
 from cloudmesh.common.debug import VERBOSE
-
+from cloudmesh.common.Shell import Shell
+import datetime
 
 class ClusterCommand(PluginCommand):
 
@@ -17,63 +17,83 @@ class ClusterCommand(PluginCommand):
 		::
 
 		  Usage:
-				cluster create -n NAME -p PROVIDER [HOSTNAMES]
-				cluster add -n NAME HOSTNAME
-				cluster remove -n NAME HOSTNAME
-				cluster kill -n NAME # only cloudmesh - bring every machine involved in server down
-				cluster info # find all clusters
-				cluster info -n NAME # find info about given cluster (query the address for either kubernetes or nomad)
-				cluster list 
+		  		cluster
+				cluster create --provider=PROVIDER --deploy=FILE NAME
+				cluster add --name=NAME NAME
+				cluster remove --name=NAME NAME
+				cluster deploy --name=NAME FILE
+				cluster kill NAME
+				cluster list
+				cluster info NAME
+
 
 		  This command allows you to create and interact with an available cluster.
 
 		  Arguments:
-			  NAME   	A cluster name/id
-			  HOSTNAME	A machine hostname
+			  NAME   	A name/id of a cluster or machine
 			  PROVIDER	One of {Nomad, Kubernetes}
+			  FILE		Jobfile for given provider
 
 		  Options:
-			  -n, --name    	specify name
-			  -p, --provider	specify provider
+			  --name    	specify name
+			  --provider	specify provider
+			  --deploy		specify application to deploy (jobfile)
 
 		"""
-		# arguments.NAME = arguments.get('==name') or arguments['-n'] or None
-		# arguments.PROVIDER = arguments['--provider'] or arguments['-p'] or None
+		map_parameters(arguments,
+                 'name',
+				 'provider',
+				 'deploy'
+                 )
 
-		VERBOSE(arguments)
+		clusters = {}
 
-		m = Manager()
-
+		vm_boot = """
+		/bin/bash cms vm boot \
+			--name=amirjankar-hadoop \
+			--output=json \
+			--n=3
+		"""
 		if arguments.create:
-			### own computer
-			## TODO connect to the given hostnames (add it to vm list) watch out for mixed cloud
-			provider = arguments['-p']
-			if not provider:
-				raise ValueError("please enter provider")
+			Console.info(f"Creating cluster {arguments.NAME}...")
+			if not arguments.NAME:
+				raise ValueError("Enter a name for the cluster.")
+			name = arguments.NAME
+			clusters[name] = {
+				'created_at': datetime.datetime.now().strftime("%Y-%m-%D %H:%M:%S"),
+				'machines': []
+			}
+			VERBOSE(clusters)
 
-			if str(provider).lower() is "nomad":
-				# for each hostname run the contents of the nomad image in cloudmesh/
-				pass
-			
-			elif str(provider).lower() is "kubernetes":
-				pass
-			
-			## generate consul address dynamic pointing to server host
 
-			print("option a")
-			m.list(arguments)
-
-		# for every one of the options we interact with nomad consul address - api
 		elif arguments.add:
-			print("option b")
-			m.list(arguments)
+			Console.info(f"Attempting to add {arguments.NAME} from {arguments.name}")
+			cluster_name, machine_name = arguments.name, arguments.NAME
+			if cluster_name not in clusters.keys():
+				VERBOSE(clusters)
+				raise ValueError(f"{cluster_name} doesn't exist. Create cluster with cms cluster create.")
+			
+			if machine_name in clusters[cluster_name]['machines']:
+				VERBOSE(clusters)
+				raise ValueError(f"{machine_name} already in {cluster_name}")
+
+			clusters[cluster_name]['machines'].append(machine_name)
+			VERBOSE(f"Successfully added {machine_name} to {cluster_name}.")
 
 		elif arguments.remove:
-			print("option b")
-			m.list(arguments)
+			Console.info(f"Attempting to remove {arguments.NAME} from {arguments.name}")
+
+		elif arguments.deploy:
+			Console.info(f"Attempting to deploy {arguments.FILE} from {arguments.name}")
 
 		elif arguments.kill:
-			print("option b")
-			m.list(arguments)
+			Console.info(f"Attempting to kill {arguments.NAME}")
+			Shell()
+		elif arguments.list:
+			VERBOSE(clusters)
 
+		elif arguments.info:
+			Console.info(f"Retriving info for cluster {arguments.NAME}")
+
+			
 		return ""
