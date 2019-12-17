@@ -70,9 +70,15 @@ The following commands will be integrated into the cloudmesh service:
 cluster create -n NAME -p PROVIDER [HOSTNAMES]
 cluster add -n NAME HOSTNAME
 cluster remove -n NAME HOSTNAME
-cluster kill -n NAME # only cloudmesh - bring every machine involved in server down
+
+# only cloudmesh - bring every machine involved in server down
+cluster kill -n NAME 
+
 cluster info # find all clusters
-cluster info -n NAME # find info about given cluster (query the address for either kubernetes or nomad)
+
+# find info about given cluster (query the address for 
+# either kubernetes or nomad)
+cluster info -n NAME 
 cluster submit -n NAME JOB
 cluster list
 ```
@@ -133,15 +139,19 @@ And submit the jobfile to the cluster using the provider's REST API.
 
 ### How to start a Hadoop Cluster?
 
-Step 1: Make sure you are in the [hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop) directory.
+Step 1: Make sure you are in the
+[hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop)
+directory.
 
-Step 2: Run docker-compose to aggregate the output of all the dockerfiles.
+Step 2: Run docker-compose to aggregate the output of all the
+dockerfiles.
 
 ```bash
 $ docker-compose up
 ```
 
-Step 3: Run all the build commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 3: Run all the build commands in the
+[Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
 $ make build
@@ -162,8 +172,10 @@ Machine/VM to run the code. If this code is being run on a Windows
 Machine, make sure that the line endings of each file is changed from
 Windows(CLRF) to Unix(LF).
 
+:o2: this looks like the git repor is not properly specified?
 
-Sources:
+
+## Refernces
 
 * [Kubernetes](https://kubernetes.io/docs/setup/#production-environment)
 * [Nomad](https://www.nomadproject.io/guides/install/production/index.html)
