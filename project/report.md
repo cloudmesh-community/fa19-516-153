@@ -110,7 +110,7 @@ to build docker images of the HDFS services namely Namenode, Datanode,
 Nodemanager and Resourcemanager. The following are the Dockerfiles for
 each HDFS service.
 
-* [Dockerfile for building a Hadoop Image](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/Hadoop/Dockerfile) <br/>
+* [Dockerfile for building a Hadoop Image](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/base/Dockerfile) <br/>
 
 * [Dockerfile for Namenode](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/Hadoop/namenode/Dockerfile) <br/>
 * [Shell Script to run Namenode](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/Hadoop/namenode/run.sh) <br/>
