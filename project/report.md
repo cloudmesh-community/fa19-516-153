@@ -118,7 +118,7 @@ each HDFS service.
 * [Dockerfile for Datanode](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/datanode/Dockerfile) <br/>
 * [Shell Script to run Datanode](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/datanode/run.sh) <br/>
 
-* [Dockerfile for Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/nodemanager/Dockerfile) <br/>
+* [Dockerfile for Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/nodemanager/Dockerfile) <br/>
 * [Shell Script to run Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/nodemanager/run.sh) <br/>
 
 * [Dockerfile for Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/resourcemanager/Dockerfile) <br/>
