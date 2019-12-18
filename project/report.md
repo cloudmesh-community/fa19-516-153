@@ -41,7 +41,7 @@ cluster itself, rather than a data source.
 ## Action
 
 In order to solve this problem, we will be implementing a Nomad and
-[Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/Kubernetes.md)
+[Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Kubernetes.md)
 cluster, and generating a standalone Spark image that will run
 parameterized jobs, utilizing all of the available multi-cloud options
 available to the orchestator as well as all of the compute instances. 
@@ -83,7 +83,7 @@ cluster submit -n NAME JOB
 cluster list
 ```
 
-[Source](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/cluster/command/cluster.py)
+[Source](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/cluster/command/cluster.py)
 
 
 ### Interaction
@@ -102,27 +102,27 @@ initialize and prepare machines in a cluster while building and
 deploying the images. The initialization and preparation steps will
 submit the requested shell script to each machine added to the cluster:
 
-* [Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/build.sh)
-* [Nomad](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/nomad/build.sh)
+* [Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/build.sh)
+* [Nomad](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/nomad/build.sh)
 
 We are using the Hadoop Distributed File System (HDFS) of Hadoop v3.2.1
 to build docker images of the HDFS services namely Namenode, Datanode,
 Nodemanager and Resourcemanager. The following are the Dockerfiles for
 each HDFS service.
 
-* [Dockerfile for building a Hadoop Image](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile) <br/>
+* [Dockerfile for building a Hadoop Image](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/Dockerfile) <br/>
 
-* [Dockerfile for Namenode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/namenode/Dockerfile) <br/>
-* [Shell Script to run Namenode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/namenode/run.sh) <br/>
+* [Dockerfile for Namenode](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/namenode/Dockerfile) <br/>
+* [Shell Script to run Namenode](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/namenode/run.sh) <br/>
 
-* [Dockerfile for Datanode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/datanode/Dockerfile) <br/>
-* [Shell Script to run Datanode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/datanode/run.sh) <br/>
+* [Dockerfile for Datanode](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/datanode/Dockerfile) <br/>
+* [Shell Script to run Datanode](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/datanode/run.sh) <br/>
 
 * [Dockerfile for Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/nodemanager/Dockerfile) <br/>
-* [Shell Script to run Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/nodemanager/run.sh) <br/>
+* [Shell Script to run Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/nodemanager/run.sh) <br/>
 
-* [Dockerfile for Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/resourcemanager/Dockerfile) <br/>
-* [Shell Script to run Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/resourcemanager/run.sh) <br/>
+* [Dockerfile for Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/resourcemanager/Dockerfile) <br/>
+* [Shell Script to run Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/resourcemanager/run.sh) <br/>
 
 
 ### Deployment
@@ -130,9 +130,9 @@ each HDFS service.
 When submitting a job to each of these providers, cloudmesh will first
 build the requested image:
 
-* [Hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile)
+* [Hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/Dockerfile)
 * Spark - __TODO__
-* [Cloudmesh](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/cloudmesh/Dockerfile) - if a remote instance is needed
+* [Cloudmesh](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/cloudmesh/Dockerfile) - if a remote instance is needed
 
 And submit the jobfile to the cluster using the provider's REST API.
 
@@ -140,8 +140,8 @@ And submit the jobfile to the cluster using the provider's REST API.
 ### How to start a Hadoop Cluster?
 
 Step 1: Make sure you are in the
-[hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop)
-directory.
+[hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop)
+directory. 
 
 Step 2: Run docker-compose to aggregate the output of all the
 dockerfiles.
@@ -151,13 +151,13 @@ $ docker-compose up
 ```
 
 Step 3: Run all the build commands in the
-[Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+[Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
 $ make build
 ```
 
-Step 4: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 4: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
 $ make wordcount
