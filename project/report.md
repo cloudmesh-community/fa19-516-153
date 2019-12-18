@@ -124,6 +124,8 @@ each HDFS service.
 * [Dockerfile for Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/resourcemanager/Dockerfile) <br/>
 * [Shell Script to run Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/resourcemanager/run.sh) <br/>
 
+* [Dockerfile for Historyserver](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/historyserver/Dockerfile) <br/>
+* [Shell Script to run Historyserver](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/historyserver/run.sh) <br/
 
 ### Deployment
 
