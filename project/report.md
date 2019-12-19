@@ -125,16 +125,18 @@ each HDFS service.
 When submitting a job to each of these providers, cloudmesh will first
 build the requested image:
 
-* [Hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile)
+
+
+* [Hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/Dockerfile)
 * Spark - __TODO__
-* [Cloudmesh](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/cloudmesh/Dockerfile) - if a remote instance is needed
+* [Cloudmesh](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/cloudmesh/Dockerfile) - if a remote instance is needed
 
 And submit the jobfile to the cluster using the provider's REST API.
 
 
 ### How to start a Hadoop Cluster?
 
-Step 1: Make sure you are in the [hadoop](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop) directory.
+Step 1: Make sure you are in the [hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop) directory.
 
 Step 2: Clean your docker
 
@@ -145,7 +147,7 @@ docker container prune
 docker network prune
 ```
 
-Step 3: Run all the build commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 3: Run all the build commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
 $ make build
@@ -157,7 +159,7 @@ Step 4: Run docker-compose to aggregate the output of all the dockerfiles.
 $ docker-compose up
 ```
 
-Step 5: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 5: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
 ```bash
 $ make wordcount
