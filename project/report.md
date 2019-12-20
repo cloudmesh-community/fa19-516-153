@@ -105,26 +105,25 @@ to build docker images of the HDFS services namely Namenode, Datanode,
 Nodemanager and Resourcemanager. The following are the Dockerfiles for
 each HDFS service.
 
-* [Dockerfile for building a Hadoop Image](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/Dockerfile) <br/>
+* [Dockerfile for building a Hadoop Image](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/base/Dockerfile) <br/>
 
-* [Dockerfile for Namenode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/namenode/Dockerfile) <br/>
-* [Shell Script to run Namenode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/namenode/run.sh) <br/>
+* [Dockerfile for Namenode](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/namenode/Dockerfile) <br/>
+* [Shell Script to run Namenode](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/namenode/run.sh) <br/>
 
-* [Dockerfile for Datanode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/datanode/Dockerfile) <br/>
-* [Shell Script to run Datanode](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/datanode/run.sh) <br/>
+* [Dockerfile for Datanode](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/datanode/Dockerfile) <br/>
+* [Shell Script to run Datanode](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/datanode/run.sh) <br/>
 
-* [Dockerfile for Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/nodemanager/Dockerfile) <br/>
-* [Shell Script to run Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/nodemanager/run.sh) <br/>
+* [Dockerfile for Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/nodemanager/Dockerfile) <br/>
+* [Shell Script to run Nodemanager](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/nodemanager/run.sh) <br/>
 
-* [Dockerfile for Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/resourcemanager/Dockerfile) <br/>
-* [Shell Script to run Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/hadoop/resourcemanager/run.sh) <br/>
+* [Dockerfile for Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/resourcemanager/Dockerfile) <br/>
+* [Shell Script to run Resourcemanager](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/resourcemanager/run.sh) <br/>
 
 
 ### Deployment
 
 When submitting a job to each of these providers, cloudmesh will first
 build the requested image:
-
 
 
 * [Hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/hadoop/Dockerfile)
