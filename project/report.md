@@ -61,9 +61,9 @@ actions efficiently.
 ## Progress
 
 * Successfully deployed a Hadoop Cluster using Nomad
-* Integrated the deployment with Cloudmesh
+* Integrated the deployment with Cloudmesh. Automation is left.
 * Successfully deployed a Hadoop Cluster using Kubernetes
-* Need to integrate the deployment with Cloudmesh
+* Need to integrate and automate the deployment with Cloudmesh
 
 :o2: please review the host command in cloudmesh-inventory. Ideally we
 should merge the commands. The reason I could not see what you did is
