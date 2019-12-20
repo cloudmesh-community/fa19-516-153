@@ -329,24 +329,39 @@ Step 1: Make sure you are in the
 [hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop)
 directory. 
 
-Step 2: Run docker-compose to aggregate the output of all the
-dockerfiles.
+Step 2: Open Gitbash and clean up docker
 
 ```bash
-$ docker-compose up
+docker system prune
+docker container prune
+docker volume prune
+docker network prune
+docker image rm $(docker image ls -q)
 ```
 
-Step 3: Run all the build commands in the
+Step 3: Run docker-compose to aggregate the output of all the
+dockerfiles.
+
+```
+docker-compose up
+```
+
+Step 4: Run all the build commands in the
 [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
-```bash
+```
 $ make build
 ```
 
-Step 4: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
+Step 5: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Hadoop/Makefile)
 
-```bash
-$ make wordcount
+```
+make run
+```
+
+Step 6: Deploy a Kubernetes Cluster
+```
+docker stack deploy --orchestrator kubernetes -c docker-compose.yml hadoop
 ```
 
 ### Possible Errors
