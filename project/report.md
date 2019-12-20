@@ -97,8 +97,8 @@ initialize and prepare machines in a cluster while building and
 deploying the images. The initialization and preparation steps will
 submit the requested shell script to each machine added to the cluster:
 
-* [Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/kubernetes/build.sh)
-* [Nomad](https://github.com/cloudmesh-community/fa19-516-153/project/cloudmesh/images/nomad/build.sh)
+* [Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/build.sh)
+* [Nomad](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/nomad/build.sh)
 
 We are using the Hadoop Distributed File System (HDFS) of Hadoop v3.2.1
 to build docker images of the HDFS services namely Namenode, Datanode,
