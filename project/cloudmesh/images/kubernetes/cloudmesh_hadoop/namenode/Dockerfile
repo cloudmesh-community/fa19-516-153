@@ -1,3 +1,5 @@
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/namenode/Dockerfile
+
 FROM bde2020/hadoop-base
 
 MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>

@@ -1,6 +1,6 @@
-FROM bde2020/hadoop-base
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/datanode/Dockerfile
 
-MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
+FROM bde2020/hadoop-base
 
 HEALTHCHECK CMD curl -f http://localhost:9864/ || exit 1
 

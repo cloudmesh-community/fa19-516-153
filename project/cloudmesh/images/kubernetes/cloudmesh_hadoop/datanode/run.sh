@@ -1,3 +1,5 @@
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/datanode/run.sh
+
 #!/bin/bash
 
 datadir=`echo $HDFS_CONF_dfs_datanode_data_dir | perl -pe 's#file://##'`

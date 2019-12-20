@@ -1,3 +1,5 @@
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/base/entrypoint.sh
+
 #!/bin/bash
 
 # Set some sensible defaults

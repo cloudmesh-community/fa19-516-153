@@ -1,4 +1,6 @@
-DOCKER_NETWORK = docker-hadoop_default
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/Makefile
+
+DOCKER_NETWORK = cloudmesh_hadoop_default
 ENV_FILE = hadoop.env
 current_branch := $(shell git rev-parse --abbrev-ref HEAD)
 build:

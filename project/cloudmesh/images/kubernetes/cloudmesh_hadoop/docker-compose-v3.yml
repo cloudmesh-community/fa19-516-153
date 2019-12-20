@@ -1,3 +1,5 @@
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/docker-compose-v3.yml
+
 version: '3'
 
 services:

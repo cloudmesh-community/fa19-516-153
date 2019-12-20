@@ -1,6 +1,6 @@
-FROM bde2020/hadoop-base
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/submit/Dockerfile
 
-MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
+FROM bde2020/hadoop-base
 
 COPY WordCount.jar /opt/hadoop/applications/WordCount.jar
 
