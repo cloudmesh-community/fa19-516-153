@@ -189,9 +189,57 @@ docker stack deploy --orchestrator kubernetes -c docker-compose.yml hadoop
 ```
 
 
+### Deployment on Nomad
+Nomad is a cluster and resource management service primarily used for prototyping and is currently running on the HashiCorp ecosystem (Vagrant, Consul, Terraform, etc.) The primary use-case for nomad is quick protyping and rapid integration of new servers into a docker-based protocol.  One strong benefit of nomad is its job parameterization functions - allowing images to be rapidly deployed through the API based on a minimal set of constraints.
+
+Nomad is designed around a single software package which is to be installed on a Debian 9+ VM for optimal use.  [Nomad Installation](http://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/nomad/build.sh)
+
+First, a nomad agent will be deployed:
+```sh
+nomad agent -dev		# for local development environment OR
+nomad agent -client		# for cluster client agent OR
+nomad agent -server		# for cluster server agent
+```
+This will ensure that nomad is running and searching for all peers in the network.
+
+If peers do not exist in the nomad network, the user must instruct the nomad agent to look for servers.  This can be controlled by the `-servers` option.
+```sh
+nomad agent -{type} -servers "host1:port,host2:port,..."
+```
+
+ Once a nomad agent/cluster is generated, a jobfile must be deployed to this cluster.  This can be performed by running the command:
+ ```sh
+ nomad job run JOBFILE_PATH						# if the cluster is locally held or the NOMAD_ADDR env variable is set OR
+ nomad job run -address={addr} JOBFILE_PATH		# if the cluster is remotely held
+ ```
+
+The nomad api can be easily accessed on a custom nomad port or the default port 4646.  This api will control all machines connected to the same cluster.
+
+
+#### Deploying Hadoop to the Nomad Cluster
+The Hadoop ecosystem may be deployed to a nomad cluster using docker-based components.
+The following images will need to be built and deployed to a container repository or transferred to all nomad servers.
+
+```sh
+cd ~/cloudmesh/images/hadoop
+docker build -t hadoop-base ./base
+docker build -t hadoop-namenode ./namenode
+docker build -t hadoop-datanode ./datanode
+docker build -t hadoop-resourcemanager ./resourcemanager
+docker build -t hadoop-nodemanager ./nodemanager
+docker build -t hadoop-historyserver ./historyserver
+docker build -t hadoop-submit ./submit
+```
+
+Each image will be run in a task in the format:
+```
+task "{task_name}" {
+	image="{image_name}"
+}
+```
+
 ## References
 
 * [Kubernetes](https://kubernetes.io/docs/setup/#production-environment)
 * [Nomad](https://www.nomadproject.io/guides/install/production/index.html)
 * [Hadoop](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html)
->>>>>>> 417af066b9be0fa6e439c8acfb9a750506de5c2e
