@@ -181,17 +181,6 @@ Step 6: Deploy a Kubernetes Cluster
 docker stack deploy --orchestrator kubernetes -c docker-compose.yml hadoop
 ```
 
-### Possible Errors
-
-A very common error caused while running this code is
-**standard_init_linux.go:211: exec user process caused "exec format
-error"**. In order to rectify this error, one must use a Linux or Mac
-Machine/VM to run the code. If this code is being run on a Windows
-Machine, make sure that the line endings of each file is changed from
-Windows(CLRF) to Unix(LF).
-
-:o2: this looks like the git repor is not properly specified?
-
 
 ## References
 
