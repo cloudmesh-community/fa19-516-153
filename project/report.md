@@ -155,19 +155,20 @@ docker network prune
 docker image rm $(docker image ls -q)
 ```
 
-Step 3: Run docker-compose to aggregate the output of all the
+Step 3: Run all the build commands in the
+[Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
+
+```
+$ make build
+```
+
+Step 4: Run docker-compose to aggregate the output of all the
 dockerfiles.
 
 ```
 docker-compose up
 ```
 
-Step 4: Run all the build commands in the
-[Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
-
-```
-$ make build
-```
 
 Step 5: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
 
@@ -192,7 +193,7 @@ Windows(CLRF) to Unix(LF).
 :o2: this looks like the git repor is not properly specified?
 
 
-## Refernces
+## References
 
 * [Kubernetes](https://kubernetes.io/docs/setup/#production-environment)
 * [Nomad](https://www.nomadproject.io/guides/install/production/index.html)
