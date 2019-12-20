@@ -58,6 +58,13 @@ interacting with the cluster, and deploying jobs to the cluster. We are
 developing a command, `cms cluster`, that will perform all of these
 actions efficiently.
 
+## Progress
+
+* Successfully deployed a Hadoop Cluster using Nomad
+* Integrated the deployment with Cloudmesh
+* Successfully deployed a Hadoop Cluster using Kubernetes
+* Need to integrate the deployment with Cloudmesh
+
 :o2: please review the host command in cloudmesh-inventory. Ideally we
 should merge the commands. The reason I could not see what you did is
 that you did not use proper markdown, so all your links did not work.
