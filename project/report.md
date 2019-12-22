@@ -152,7 +152,7 @@ And submit the jobfile to the cluster using the provider's REST API.
 Step 1: Make sure you are in the [cloudmesh_hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop)
 directory and open **Gitbash**. 
 
-Step 2: Open  and clean up docker
+Step 2: Clean up docker
 
 ```bash
 make clean
