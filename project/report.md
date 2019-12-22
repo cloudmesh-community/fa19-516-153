@@ -2,6 +2,7 @@
 
 * Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
 * Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
+* Gregor as he contributed cloudmesh and made mods to the prg
 
 * Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
 
@@ -41,8 +42,21 @@ cluster itself, rather than a data source.
 
 ## Action
 
-In order to solve this problem, we will be implementing a Nomad and
-[Kubernetes](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Kubernetes.md)
+In order to solve this problem, we will be using cloudmesh to coordinate the
+the vm management on which we install the clusters. This is facilitated also 
+by the following commands available in cloudmesh:
+
+* `cms vm boot`
+* `cms inventory`
+* `cms host`
+
+In addition we leverage docker images developed by bde2020 ...
+
+    TODO write if you deverge from them, looks like you need more explanations
+
+ 
+ The kubernetes image Dockefiles are available in the 
+[Repository](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/Kubernetes.md)
 cluster, and generating a standalone Spark image that will run
 parameterized jobs, utilizing all of the available multi-cloud options
 available to the orchestator as well as all of the compute instances. 
@@ -50,18 +64,53 @@ We will also be implementing a testing service that will provide the
 cluster with the access to compute resources and storage that the jobs
 will need to run.
 
+:o2: at no time was mentioned that the images are copied from bde2020 in
+the report which is not good as that would be plagiarizm if you do not
+mention it.
+
 
 ## Solution
 
-The solution is composed of 3 main parts, creating a cluster,
-interacting with the cluster, and deploying jobs to the cluster. We are
-developing a command, `cms cluster`, that will perform all of these
-actions efficiently.
+The solution is composed of the following workflow:
+
+1. creating a cluster with cloudmesh 
+2. interacting with the cluster with the existing inventory the host and
+   the vm commands (and improving them if they do miss features)
+3. Deploying Hadoop and/or Spark on the cluster
+4. Starting hadoop or spark jobs on the cluster
+5. Retrieving results form the jobs
+
+jobs to the cluster. To make it more convenient for the user, we will
+integrate this workflow into a convenient cloudmesh command. This
+command will replace the prior work that was conducted in cloudmesh BDRA
+that deployed hadoop and spark with ansible scripts. 
+**i forgot the link ... we need to find them in the repos** 
+
+
+The command will be called `cms cluster` and has the following manual page:
+
+TBD
+
+
 
 ## Progress
 
-* Successfully deployed a Hadoop using a Nomad Cluster
+:o2: please remove this progress section and instead focus on the report
+writing. For example the report of the first item in your progress is
+unclear and not even needed for this project. Please drop the use of
+nomad. Cloudmesh can do this and has been doing thsi before nomad even
+existed.
+
+
+* Successfully deployed a Hadoop using a Nomad Cluster 
+
+  :o2: if nomad deploys hadoop or just a cluster, please explain, your
+  report is to vague and thus proper feedback is impossible.
+   
 * Integrated the deployment with Cloudmesh. Automation is left.
+
+  :o: if you use cloudmesh i do not see why you need nomad.
+  
 * Successfully deployed a Hadoop using a Kubernetes Cluster
 * Need to integrate and automate the deployment with Cloudmesh
 
@@ -71,6 +120,10 @@ that you did not use proper markdown, so all your links did not work.
 Thus instead of calling the command in inventory cluster I called it
 host to simplify the merging. Please remember that merging is part of
 this review process. We need that functionality only once.
+
+:o2: the previous comment indicates to me that we discussed the use of
+nomad before. I also recal that we several times mentioned that we
+shoudl start vms with cloudmesh and use inventory to manage the nodes.
 
 The following commands will be integrated into the cloudmesh service:
 
@@ -173,7 +226,8 @@ docker-compose up
 ```
 
 
-Step 5: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
+Step 5: Run all the run commands in the
+[Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
 
 ```bash
 make run
@@ -191,11 +245,68 @@ Step 7: Remove the Kubernetes Cluster
 docker stack rm cloudmesh_hadoop
 ```
 
+### Deployment with the help of Cloudmesh
 
-### Deployment on Nomad
-Nomad is a cluster and resource management service primarily used for prototyping and is currently running on the HashiCorp ecosystem (Vagrant, Consul, Terraform, etc.) The primary use-case for nomad is quick protyping and rapid integration of new servers into a docker-based protocol.  One strong benefit of nomad is its job parameterization functions - allowing images to be rapidly deployed through the API based on a minimal set of constraints.
+The deployment of VMs in cloudmesh is a one line command:
 
-Nomad is designed around a single software package which is to be installed on a Debian 9+ VM for optimal use.  [Nomad Installation](http://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/nomad/build.sh)
+```bash
+cms vm boot host[01-10]
+```
+
+To list the vms you can use
+
+```bash
+cms vm boot host[01-10]
+```
+
+To delete the VMS you can use
+
+```bash
+cms vm delete host[01-10]
+```
+
+To run commands on the hosts you can use
+
+```bash
+cms vm ssh host[01-10] command
+```
+
+As you can see cloudmesh has a very convenient mechanism to use user
+defined hostnames based on a standard configuration that is managed in a
+configuration file. This abstraction is very easy to understand for users.
+
+Worker nodes and masters can be configured by convention, for example
+the first node can be the master node. If more detailes service fetures
+need to be recorded they can be added with the
+
+```bash
+cloudmesh inventory
+```
+
+command which allows us to easily manage service attribute names in a
+text yaml configuration file.
+
+### Deployment with the help of Nomad
+
+At one point we used Nomad for this project, but we have to point out
+that using NOmad for this project is unnecessary as Cloudmesh provides
+the ability to manage vms and can stroe them in a database and also in
+an inventory file. These features have been available before Nomad was 
+developed. 
+
+
+However, we also experimented with Nomad. Nomad is a cluster and
+resource management service primarily used for prototyping and is
+currently running on the HashiCorp ecosystem (Vagrant, Consul,
+Terraform, etc.) The primary use-case for nomad is quick protyping and
+rapid integration of new servers into a docker-based protocol.  One
+strong benefit of nomad is its job parameterization functions - allowing
+images to be rapidly deployed through the API based on a minimal set of
+constraints.
+
+Nomad is designed around a single software package which is to be
+installed on a Debian 9+ VM for optimal use.  [Nomad
+Installation](http://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/nomad/build.sh)
 
 First, a nomad agent will be deployed:
 ```sh
@@ -205,23 +316,32 @@ nomad agent -server		# for cluster server agent
 ```
 This will ensure that nomad is running and searching for all peers in the network.
 
-If peers do not exist in the nomad network, the user must instruct the nomad agent to look for servers.  This can be controlled by the `-servers` option.
+If peers do not exist in the nomad network, the user must instruct the
+nomad agent to look for servers.  This can be controlled by the
+`-servers` option.
+
 ```sh
 nomad agent -{type} -servers "host1:port,host2:port,..."
 ```
 
- Once a nomad agent/cluster is generated, a jobfile must be deployed to this cluster.  This can be performed by running the command:
+ Once a nomad agent/cluster is generated, a jobfile must be deployed to
+ this cluster.  This can be performed by running the command:
+ 
  ```sh
  nomad job run JOBFILE_PATH						# if the cluster is locally held or the NOMAD_ADDR env variable is set OR
  nomad job run -address={addr} JOBFILE_PATH		# if the cluster is remotely held
  ```
 
-The nomad api can be easily accessed on a custom nomad port or the default port 4646.  This api will control all machines connected to the same cluster.
+The nomad api can be easily accessed on a custom nomad port or the
+default port 4646.  This api will control all machines connected to the
+same cluster.
 
 
 #### Deploying Hadoop to the Nomad Cluster
-The Hadoop ecosystem may be deployed to a nomad cluster using docker-based components.
-The following images will need to be built and deployed to a container repository or transferred to all nomad servers.
+
+The Hadoop ecosystem may be deployed to a nomad cluster using
+docker-based components. The following images will need to be built and
+deployed to a container repository or transferred to all nomad servers.
 
 ```sh
 cd ~/cloudmesh/images/hadoop
