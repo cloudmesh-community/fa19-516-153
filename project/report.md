@@ -78,6 +78,73 @@ These commands are easy to implement due to the availability of the
 database and the `cms host` command
 
 
+## Implementation
+
+### Cluster Abstrations
+
+#### Inventory
+
+:o2: describe
+
+#### Cluster Dict
+
+to represent a cluster in the databbase we simply add the inventory to
+the cloudmesh database. They are stored in the collection
+`local-cluster`. Cloudmesh has a sophisticated easy to use interface to
+MongoDB allowing augmented functions with a decorator to write into the
+database as long as they return a dict and contain a `cm` dict
+specifying its uniqueness and name. For our cluster we define it as 
+
+```
+"cm" : {
+    "kind" : "secgroup",
+    "name" : "mycluster",
+    "cloud" : "local", # the cluster service runs locally 
+                       # in futer version we will rename cloud to 
+                       # either service or location
+                       # on which cloud the node runs is specified
+                       # within each node. 
+    "collection" : "local-secgroup",
+    "created" : "2019-12-18 19:57:22.052384",
+    "modified" : "2019-12-18 19:57:22.052384"
+}
+"name" : "mycluster",
+"cluster": .... # details from inventory 
+```
+
+We implement a class that allows easy access to this functionality as an API
+
+class Cluster:
+
+        
+    def list(name=name):
+        return dict  
+        
+    @DatabbaseUpdate
+    def add(name=name, spec=inventory_spec):
+        return dict    
+
+    @DatabbaseUpdate
+    def delete(name=name):
+        return dict    
+
+    @DatabbaseUpdate
+    def status(name=name):
+        return dict    
+        
+    @DatabbaseUpdate
+    def deploy(name=name, spec=deploy_spec):
+        return dict    
+
+    @DatabbaseUpdate
+    def run(name=name, spec=run_spec):
+        return dict    
+
+This API can than be used in a cloudmesh Plugin command to make the
+functionality available from the command line.
+
+
+
 ## Proposal :o2: we are long past the proposal stage
 
 We will be exploring options for an implementation of Apache Spark that
