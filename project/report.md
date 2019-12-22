@@ -2,7 +2,7 @@
 
 * Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
 * Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
-* Gregor as he contributed cloudmesh and made mods to the prg
+* Gregor von Laszewski
 
 * Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
 
@@ -18,19 +18,67 @@
 please review your document in the epub not in github we only look at
 the epub
 
-## Problem
+## Introduction
 
 In various enterprise data pipelines, there is a lack of multi-cloud
 architecture, often due to services like Spark being natively integrated
-into clusters such as AWS Elastic MapReduce.  These data pipelines can
-benefit from a provider-agnostic solution that will encompass all their
+into clusters such as AWS Elastic MapReduce [@REFMISISNG], Azure
+[@REFMISISNG], Google [@REFMISISNG], or Oracle [@REFMISISNG], as well as
+locally managed traditional clusters.  These data pipelines can benefit
+from a provider-agnostic solution that will encompass all their
 available options, rather than forcing them to choose a cloud platform
 over another.  This can be especially beneficial to data teams that
 require dynamic storage solutions and want the flexibility to move
-between cloud platforms with ease.
+between cloud platforms with ease. We will leverage the convenient
+multi-cloud interfaces provided by Cloudmesh [@REFMISISNG].
       
+:o2: it is unclear why the use of native cluster is bad ... maybe it is
+not bad, but its good. maybe its just another way ... Motivation for
+project not yet fully clarified.
 
-## Proposal
+
+## Cloudmesh
+
+We use cloudmesh whic provides the following benefical features:
+
+* Support for multicloud VM management on AWS, Azure, Google. Oracle,
+  OpenStack. 
+* Support for containers just the same way VMs are supported
+  (this has not been leveraged yet in this activity).
+* Support for bookkeeping VM's and containers in a database 
+* Support for bookkeeping of an inventory of services
+* ability to distribute a default configuration file that allows easy 
+  authentication and selection of default images and VM sizes
+* Availability of a sophisticated command shell with plugins allowing 
+  us to add solution specific commands in minutes
+
+Together these features provide a very easy integration solution for
+deploying any cluster. However, we will focus here on the deployment of
+hadoop and spark clusters. The result will be an easy to use command:
+
+```bash
+$ cms cluster --name=mycluster --deploy=host[01-10] --service=hadoop
+$ cms cluster --name=mycluster --deploy=host[01-10] --service=hadoop
+```
+
+To start jobs on such a cluster we do it with 
+
+```bash
+$ cms cluster --name=mycluster --job=wordcount.jar
+```
+
+As we use standrad ssh protocoll, we can inspect and fetch data from a host with
+
+```bash
+$ cms cluster --name=mycluster get /fileonhost /fileonlocal
+$ cms cluster --name=mycluster put /fileonlocal /fileonhost
+```
+
+These commands are easy to implement due to the availability of the
+database and the `cms host` command
+
+
+## Proposal :o2: we are long past the proposal stage
 
 We will be exploring options for an implementation of Apache Spark that
 can be managed remotely from a multi-cloud orchestration service.  We
