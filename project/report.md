@@ -109,7 +109,7 @@ specifying its uniqueness and name. For our cluster we define it as
     "modified" : "2019-12-18 19:57:22.052384"
 }
 "name" : "mycluster",
-"cluster": .... # details from inventory 
+"inventory": .... # details from inventory 
 ```
 
 We implement a class that allows easy access to this functionality as an API
@@ -142,7 +142,6 @@ class Cluster:
 
 This API can than be used in a cloudmesh Plugin command to make the
 functionality available from the command line.
-
 
 
 ## Proposal :o2: we are long past the proposal stage
