@@ -182,7 +182,13 @@ make run
 Step 6: Deploy a Kubernetes Cluster
 
 ```bash
-docker stack deploy --orchestrator kubernetes -c docker-compose.yml hadoop
+docker stack deploy --orchestrator kubernetes -c docker-compose.yml cloudmesh_hadoop
+```
+
+Step 7: Remove the Kubernetes Cluster
+
+```bash
+docker stack rm cloudmesh_hadoop
 ```
 
 

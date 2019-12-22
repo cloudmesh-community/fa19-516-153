@@ -9,8 +9,8 @@ clean:
 	docker system prune
 	docker network prune
 	docker volume prune
-	docker image prune
-	docker image rm --force $(docker image ls -q)
+	docker image prune -af
+	$(shell docker image rm --force $(docker image ls -q))
 	
 build:
 	docker build -t bde2020/hadoop-base:$(current_branch) ./base
