@@ -150,41 +150,38 @@ And submit the jobfile to the cluster using the provider's REST API.
 ### How to deploy a Kubernetes Cluster?
 
 Step 1: Make sure you are in the [cloudmesh_hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop)
-directory. 
+directory and open **Gitbash**. 
 
-Step 2: Open Gitbash and clean up docker
+Step 2: Open  and clean up docker
 
 ```bash
-docker system prune
-docker container prune
-docker volume prune
-docker network prune
-docker image rm $(docker image ls -q)
+make clean
 ```
 
 Step 3: Run all the build commands in the
 [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
 
-```
+```bash
 make build
 ```
 
 Step 4: Run docker-compose to aggregate the output of all the
 dockerfiles.
 
-```
+```bash
 docker-compose up
 ```
 
 
 Step 5: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
 
-```
+```bash
 make run
 ```
 
 Step 6: Deploy a Kubernetes Cluster
-```
+
+```bash
 docker stack deploy --orchestrator kubernetes -c docker-compose.yml hadoop
 ```
 

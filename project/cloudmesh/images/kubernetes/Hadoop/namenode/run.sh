@@ -1,6 +1,6 @@
-#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/namenode/run.sh
-
 #!/bin/bash
+
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/namenode/run.sh
 
 namedir=`echo $HDFS_CONF_dfs_namenode_name_dir | perl -pe 's#file://##'`
 if [ ! -d $namedir ]; then

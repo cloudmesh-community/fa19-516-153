@@ -86,7 +86,7 @@ services:
     networks:
       - hbase
     volumes:
-      - hadoop_historyserver:/hadoop/yarn/timeline
+      - hadoop-historyserver:/hadoop/yarn/timeline
     environment:
       SERVICE_PRECONDITION: "namenode:50070 datanode:50075 resourcemanager:8088"
     env_file:

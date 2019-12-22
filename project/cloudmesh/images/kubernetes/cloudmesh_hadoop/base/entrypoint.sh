@@ -1,6 +1,6 @@
-#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/base/entrypoint.sh
-
 #!/bin/bash
+
+#Referred https://github.com/big-data-europe/docker-hadoop/blob/master/base/entrypoint.sh
 
 # Set some sensible defaults
 export CORE_CONF_fs_defaultFS=${CORE_CONF_fs_defaultFS:-hdfs://`hostname -f`:8020}
