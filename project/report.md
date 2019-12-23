@@ -60,9 +60,9 @@ actions efficiently.
 
 ## Progress
 
-* Successfully deployed a Hadoop using a Nomad Cluster
+* Successfully deployed Hadoop using a Nomad Cluster
 * Integrated the deployment with Cloudmesh. Automation is left.
-* Successfully deployed a Hadoop using a Kubernetes Cluster
+* Successfully deployed Hadoop using a Kubernetes Cluster
 * Need to integrate and automate the deployment with Cloudmesh
 
 :o2: please review the host command in cloudmesh-inventory. Ideally we
