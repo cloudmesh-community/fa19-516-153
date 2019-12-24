@@ -22,15 +22,15 @@ the epub
 
 In various enterprise data pipelines, there is a lack of multi-cloud
 architecture, often due to services like Spark being natively integrated
-into clusters such as AWS Elastic MapReduce [@REFMISISNG], Azure
-[@REFMISISNG], Google [@REFMISISNG], or Oracle [@REFMISISNG], as well as
+into clusters such as AWS Elastic MapReduce [REFMISISNG], Azure
+[REFMISISNG], Google [REFMISISNG], or Oracle [REFMISISNG], as well as
 locally managed traditional clusters.  These data pipelines can benefit
 from a provider-agnostic solution that will encompass all their
 available options, rather than forcing them to choose a cloud platform
 over another.  This can be especially beneficial to data teams that
 require dynamic storage solutions and want the flexibility to move
 between cloud platforms with ease. We will leverage the convenient
-multi-cloud interfaces provided by Cloudmesh [@REFMISISNG].
+multi-cloud interfaces provided by Cloudmesh [REFMISISNG].
       
 :o2: it is unclear why the use of native cluster is bad ... maybe it is
 not bad, but its good. maybe its just another way ... Motivation for
