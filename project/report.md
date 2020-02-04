@@ -1,5 +1,5 @@
 # Spark Cluster Management Abstraction Layer
-
+*The new repository for this project is located at [cloudmesh/cloudmesh-cluster](https://github.com/cloudmesh/cloudmesh-cluster)*.
 * Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)
 * Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
 * Gregor von Laszewski
