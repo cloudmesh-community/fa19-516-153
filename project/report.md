@@ -1,16 +1,34 @@
 # Spark Cluster Management Abstraction Layer
 
-* Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
+* Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)
 * Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
 * Gregor von Laszewski
-
 * Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
 
+## Introduction
+In various enterprise data pipelines, there is a lack of multi-cloud architecture, often due to cloud platforms offering products such as [AWS Elastic MapReduce](https://aws.amazon.com/emr/), [Azure HDInsight](https://azure.microsoft.com/en-us/services/hdinsight/), [Google Dataproc](https://cloud.google.com/dataproc/), or [Oracle Big Data Cloud Service](https://www.oracle.com/big-data/big-data-cloud-service/). Businesses suffer from the lack of the ability to deploy applications to clusters that encompass several cloud platforms and on-premises storage/compute.  These data pipelines can benefit from a provider-agnostic solution that will encompass all their available options, rather than forcing them to choose a cloud platform over another. This can be especially beneficial to data teams that require dynamic storage solutions and want the flexibility to move between cloud platforms with ease. Our solution will integrate a flexible cloud cluster service into the resource management services provided by [Cloudmesh](https://cloudmesh-community.github.io/), in order to provide teams with a better resource with which to easily deploy clusters.
+
+!["Process Diagram"](./diagram.jpg)     
+*[Source](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/diagram.jpg)*
+
+## Progress/Benchmarking
+Our team prototyped our product using a combination of Docker and Nomad on OpenStack to orchestrate clusters and deploy applications.  Cloudmesh was used to manage cloud instances, build images, and automate the deployment cycle.  Nomad was initially used due to its ease of use for prototyping and general-purpose application deployment ([source](https://www.hashicorp.com/resources/hashicorp-nomad-vs-kubernetes-comparing-complexity)). Nomad was rejected due to the superiority of the Kubernetes technology stack, which provided a quicker deployment and more effective job management.  Our team is currently working on integrating [Parameterized Stanzas](https://www.nomadproject.io/docs/job-specification/parameterized.html) into the Cloudmesh Kubernetes Deployment in order to complete the replacement of Nomad in our project.
+
+Our team is additionally working on the following cloudmesh commands in order to automate the deployment and requesting of instances based on available resources:
+```sh
+cluster create -n NAME -p PROVIDER [HOSTNAMES]
+cluster add -n NAME HOSTNAME
+cluster remove -n NAME HOSTNAME
+cluster kill -n NAME
+cluster info -n NAME 
+cluster submit -n NAME JOB
+cluster list
+```
+*[Source](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/cluster/command/cluster.py)*
+
+## Deploying a Kubernetes Cluster using Cloudmesh
+
 ## Deploying Hadoop on Kubernetes using Cloudmesh
-!["Process Diagram"](./diagram.jpg) 
-
-
-
 -------
 *Old revision, please refer only to content above*
 
