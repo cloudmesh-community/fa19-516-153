@@ -8,6 +8,7 @@
 ## Introduction
 In various enterprise data pipelines, there is a lack of multi-cloud architecture, often due to cloud platforms offering easy-to-use products such as [AWS Elastic MapReduce](https://aws.amazon.com/emr/), [Azure HDInsight](https://azure.microsoft.com/en-us/services/hdinsight/), [Google Dataproc](https://cloud.google.com/dataproc/), or [Oracle Big Data Cloud Service](https://www.oracle.com/big-data/big-data-cloud-service/). Businesses suffer from the lack of the ability to deploy applications to clusters that encompass several cloud platforms and on-premises storage/compute.  These data pipelines can benefit from a provider-agnostic solution that will encompass all their available options, rather than forcing them to choose a cloud platform over another. This can be especially beneficial to data teams that require dynamic storage solutions and want the flexibility to move between cloud platforms with ease. Our solution will integrate a flexible cloud cluster service into the resource management services provided by [Cloudmesh](https://cloudmesh-community.github.io/), in order to provide teams with a better resource with which to easily deploy clusters.
 
+The following process diagram describes how our application will interact with cloud instances, other processes (Docker/Kubernetes, Cloudmesh), and the live Hadoop/Spark instances.
 !["Process Diagram"](./diagram.jpg)     
 *[Source](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/diagram.jpg)*
 
