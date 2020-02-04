@@ -6,17 +6,13 @@
 
 * Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
 
-:o2: what is progress
+## Deploying Hadoop on Kubernetes using Cloudmesh
+!["Process Diagram"](./diagram.jpg) 
 
-:o2: use proper markdown
 
-:o2: remove all html code and use proper markdown
 
-:o2: all most hyperlinks are not working
-
-:o2: we can not review your project dud to the trivial markdown errors.
-please review your document in the epub not in github we only look at
-the epub
+-------
+*Old revision, please refer only to content above*
 
 ## Introduction
 
