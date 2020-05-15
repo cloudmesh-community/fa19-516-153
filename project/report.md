@@ -9,7 +9,7 @@ The following repositories contain the code in this project.
 * [cloudmesh/cloudmesh-cluster](https://github.com/cloudmesh/cloudmesh-cluster)
 * [cloudmesh/cloudmesh-spark](https://github.com/cloudmesh/cloudmesh-spark)*
 * [cloudmesh/cloudmesh-hadoop](https://github.com/cloudmesh/cloudmesh-hadoop)*
-* [cloudmes/cloudmesh-k8](https://github.com/cloudmesh/cloudmesh-k8)*
+* [cloudmesh/cloudmesh-k8](https://github.com/cloudmesh/cloudmesh-k8)*
 
 _*Incomplete due to unmet dependencies in cloudmesh cluster._
 Deployments currently have to be made manually using the cluster deploy command and the shell scripts, files, and images stored in
@@ -22,17 +22,16 @@ The following process diagram describes how our application will interact with c
 !["Process Diagram"](./diagram.jpg)     
 *[Source](https://github.com/cloudmesh-community/fa19-516-153/blob/master/project/diagram.jpg)*
 
-## Progress/Benchmarking
-Our team prototyped our product using a combination of Docker and Nomad on OpenStack to orchestrate clusters and deploy applications.  Cloudmesh was used to manage cloud instances, build images, and automate the deployment cycle.  Nomad was initially used due to its ease of use for prototyping and general-purpose application deployment ([source](https://www.hashicorp.com/resources/hashicorp-nomad-vs-kubernetes-comparing-complexity)). Nomad was rejected due to the superiority of the Kubernetes technology stack, which provided a quicker deployment and more effective job management.  Our team is currently working on integrating [Parameterized Stanzas](https://www.nomadproject.io/docs/job-specification/parameterized.html) into the Cloudmesh Kubernetes Deployment in order to complete the replacement of Nomad in our project.
+The following commands will be integrated into the cloudmesh service:
 
-Our team is additionally working on the following cloudmesh commands in order to automate the deployment and requesting of instances based on available resources:
-```bash
+```
 cluster create LABEL (--vms=NAMES | --n=N) [--cloud=CLOUD]
 cluster (add|remove) LABEL (--vms=NAMES | --n=N) [--cloud=CLOUD]
 cluster deploy --file=FILE LABEL
 cluster terminate LABEL [--kill]
 cluster info [LABEL] [--verbose=V]
 ```
+
 *[Source](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/cluster/command/cluster.py)*
 
 ## Deploying a Kubernetes Cluster using Cloudmesh
