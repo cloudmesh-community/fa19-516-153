@@ -44,6 +44,43 @@ The following capabilities of Cloudmesh were used to provision instances and dep
 
 Step 1: Use a Unix-based CLI to enter the directory [cloudmesh_hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop). 
 
+Step 2: Check whether a kubernetes cluster named 'cloudmesh_hadoop' already exists
+
+```bash
+docker stack ls
+```
+
+Step 3: If a kubernetes cluster named 'cloudmesh_hadoop' already exists, remove it
+
+```bash
+docker stack rm cloudmesh_hadoop
+```
+
+Step 4: If a kubernetes cluster named 'cloudmesh_hadoop' does not exists, skip Step 3
+
+Step 5: Clean up docker artifacts.
+
+```bash
+make clean
+```
+
+Step 6: Deploy a Kubernetes Cluster
+
+```bash
+docker stack deploy --orchestrator kubernetes -c docker-compose.yml cloudmesh_hadoop
+```
+
+Step 7: Remove the Kubernetes Cluster
+
+```bash
+docker stack rm cloudmesh_hadoop
+```
+
+
+### How to deploy a Swarm Cluster?
+
+Step 1: Use a Unix-based CLI to enter the directory [cloudmesh_hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop). 
+
 Step 2: Clean up docker artifacts.
 
 ```bash
@@ -64,24 +101,11 @@ dockerfiles.
 docker-compose up
 ```
 
-
 Step 5: Run all the run commands in the
 [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
 
 ```bash
 make run
-```
-
-Step 6: Deploy a Kubernetes Cluster
-
-```bash
-docker stack deploy --orchestrator kubernetes -c docker-compose.yml cloudmesh_hadoop
-```
-
-Step 7: Remove the Kubernetes Cluster
-
-```bash
-docker stack rm cloudmesh_hadoop
 ```
 
 
