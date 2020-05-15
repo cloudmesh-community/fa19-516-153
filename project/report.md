@@ -34,13 +34,13 @@ cluster info [LABEL] [--verbose=V]
 
 *[Source](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/cluster/command/cluster.py)*
 
-## Deploying a Kubernetes Cluster using Cloudmesh
+## Deploying Hadoop on a Kubernetes Cluster using Cloudmesh
 The following capabilities of Cloudmesh were used to provision instances and deploy Kubernetes to [AWS](https://aws.amazon.com/), [Azure](https://azure.microsoft.com/), and [OpenStack](https://www.chameleoncloud.org/):
 * [cloudmesh-cloud](https://github.com/cloudmesh/cloudmesh-cloud): Resource provisioning, cloud access
 * [cloudmesh-inventory](https://github.com/cloudmesh/cloudmesh-inventory): Resource management, access & security
 * [cloudmesh-cluster](https://github.com/cloudmesh/cloudmesh-cluster): Cluster deployment, images
 
-### How to deploy a Kubernetes Cluster?
+### How to deploy Hadoop on a Kubernetes Cluster?
 
 Step 1: Use a Unix-based CLI to enter the directory [cloudmesh_hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop). 
 
@@ -77,7 +77,7 @@ docker stack rm cloudmesh_hadoop
 ```
 
 
-### How to deploy a Swarm Cluster?
+### How to deploy Hadoop on a Swarm Cluster?
 
 Step 1: Use a Unix-based CLI to enter the directory [cloudmesh_hadoop](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop). 
 
