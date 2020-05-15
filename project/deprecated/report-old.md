@@ -2,7 +2,7 @@
 
 * Anish Mirjankar [fa19-516-153](https://github.com/cloudmesh-community/fa19-516-153)  
 * Siddhesh Mirjankar [fa19-516-164](https://github.com/cloudmesh-community/fa19-516-164)
-* Gregor von Laszewski
+* Gregor as he contributed cloudmesh and made mods to the prg
 
 * Insights: <https://github.com/cloudmesh-community/fa19-516-153/graphs/contributors>
 
@@ -18,133 +18,19 @@
 please review your document in the epub not in github we only look at
 the epub
 
-## Introduction
+## Problem
 
 In various enterprise data pipelines, there is a lack of multi-cloud
 architecture, often due to services like Spark being natively integrated
-into clusters such as AWS Elastic MapReduce [@REFMISISNG], Azure
-[@REFMISISNG], Google [@REFMISISNG], or Oracle [@REFMISISNG], as well as
-locally managed traditional clusters.  These data pipelines can benefit
-from a provider-agnostic solution that will encompass all their
+into clusters such as AWS Elastic MapReduce.  These data pipelines can
+benefit from a provider-agnostic solution that will encompass all their
 available options, rather than forcing them to choose a cloud platform
 over another.  This can be especially beneficial to data teams that
 require dynamic storage solutions and want the flexibility to move
-between cloud platforms with ease. We will leverage the convenient
-multi-cloud interfaces provided by Cloudmesh [@REFMISISNG].
+between cloud platforms with ease.
       
-:o2: it is unclear why the use of native cluster is bad ... maybe it is
-not bad, but its good. maybe its just another way ... Motivation for
-project not yet fully clarified.
 
-
-## Cloudmesh
-
-We use cloudmesh whic provides the following benefical features:
-
-* Support for multicloud VM management on AWS, Azure, Google. Oracle,
-  OpenStack. 
-* Support for containers just the same way VMs are supported
-  (this has not been leveraged yet in this activity).
-* Support for bookkeeping VM's and containers in a database 
-* Support for bookkeeping of an inventory of services
-* ability to distribute a default configuration file that allows easy 
-  authentication and selection of default images and VM sizes
-* Availability of a sophisticated command shell with plugins allowing 
-  us to add solution specific commands in minutes
-
-Together these features provide a very easy integration solution for
-deploying any cluster. However, we will focus here on the deployment of
-hadoop and spark clusters. The result will be an easy to use command:
-
-```bash
-$ cms cluster --name=mycluster --deploy=host[01-10] --service=hadoop
-$ cms cluster --name=mycluster --deploy=host[01-10] --service=hadoop
-```
-
-To start jobs on such a cluster we do it with 
-
-```bash
-$ cms cluster --name=mycluster --job=wordcount.jar
-```
-
-As we use standrad ssh protocoll, we can inspect and fetch data from a host with
-
-```bash
-$ cms cluster --name=mycluster get /fileonhost /fileonlocal
-$ cms cluster --name=mycluster put /fileonlocal /fileonhost
-```
-
-These commands are easy to implement due to the availability of the
-database and the `cms host` command
-
-
-## Implementation
-
-### Cluster Abstrations
-
-#### Inventory
-
-:o2: describe
-
-#### Cluster Dict
-
-to represent a cluster in the databbase we simply add the inventory to
-the cloudmesh database. They are stored in the collection
-`local-cluster`. Cloudmesh has a sophisticated easy to use interface to
-MongoDB allowing augmented functions with a decorator to write into the
-database as long as they return a dict and contain a `cm` dict
-specifying its uniqueness and name. For our cluster we define it as 
-
-```
-"cm" : {
-    "kind" : "secgroup",
-    "name" : "mycluster",
-    "cloud" : "local", # the cluster service runs locally 
-                       # in futer version we will rename cloud to 
-                       # either service or location
-                       # on which cloud the node runs is specified
-                       # within each node. 
-    "collection" : "local-secgroup",
-    "created" : "2019-12-18 19:57:22.052384",
-    "modified" : "2019-12-18 19:57:22.052384"
-}
-"name" : "mycluster",
-"inventory": .... # details from inventory 
-```
-
-We implement a class that allows easy access to this functionality as an API
-
-class Cluster:
-
-        
-    def list(name=name):
-        return dict  
-        
-    @DatabbaseUpdate
-    def add(name=name, spec=inventory_spec):
-        return dict    
-
-    @DatabbaseUpdate
-    def delete(name=name):
-        return dict    
-
-    @DatabbaseUpdate
-    def status(name=name):
-        return dict    
-        
-    @DatabbaseUpdate
-    def deploy(name=name, spec=deploy_spec):
-        return dict    
-
-    @DatabbaseUpdate
-    def run(name=name, spec=run_spec):
-        return dict    
-
-This API can than be used in a cloudmesh Plugin command to make the
-functionality available from the command line.
-
-
-## Proposal :o2: we are long past the proposal stage
+## Proposal
 
 We will be exploring options for an implementation of Apache Spark that
 can be managed remotely from a multi-cloud orchestration service.  We
@@ -209,11 +95,6 @@ TBD
 
 ## Progress
 
-<<<<<<< HEAD
-* Successfully deployed Hadoop using a Nomad Cluster
-* Integrated the deployment with Cloudmesh. Automation is left.
-* Successfully deployed Hadoop using a Kubernetes Cluster
-=======
 :o2: please remove this progress section and instead focus on the report
 writing. For example the report of the first item in your progress is
 unclear and not even needed for this project. Please drop the use of
@@ -231,7 +112,6 @@ existed.
   :o: if you use cloudmesh i do not see why you need nomad.
   
 * Successfully deployed a Hadoop using a Kubernetes Cluster
->>>>>>> 1b7fd119f49b3da35468371298e1c11eca93b897
 * Need to integrate and automate the deployment with Cloudmesh
 
 :o2: please review the host command in cloudmesh-inventory. Ideally we
@@ -346,8 +226,7 @@ docker-compose up
 ```
 
 
-Step 5: Run all the run commands in the
-[Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
+Step 5: Run all the run commands in the [Makefile](https://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/kubernetes/cloudmesh_hadoop/Makefile)
 
 ```bash
 make run
@@ -365,68 +244,18 @@ Step 7: Remove the Kubernetes Cluster
 docker stack rm cloudmesh_hadoop
 ```
 
-### Deployment with the help of Cloudmesh
 
-The deployment of VMs in cloudmesh is a one line command:
+### Deployment on Nomad
 
-```bash
-cms vm boot host[01-10]
-```
+Nomad is a cluster and resource management service primarily used for
+prototyping and is currently running on the HashiCorp ecosystem
+(Vagrant, Consul, Terraform, etc.) The primary use-case for nomad is
+quick protyping and rapid integration of new servers into a docker-based
+protocol.  One strong benefit of nomad is its job parameterization
+functions - allowing images to be rapidly deployed through the API based
+on a minimal set of constraints.
 
-To list the vms you can use
-
-```bash
-cms vm boot host[01-10]
-```
-
-To delete the VMS you can use
-
-```bash
-cms vm delete host[01-10]
-```
-
-To run commands on the hosts you can use
-
-```bash
-cms vm ssh host[01-10] command
-```
-
-As you can see cloudmesh has a very convenient mechanism to use user
-defined hostnames based on a standard configuration that is managed in a
-configuration file. This abstraction is very easy to understand for users.
-
-Worker nodes and masters can be configured by convention, for example
-the first node can be the master node. If more detailes service fetures
-need to be recorded they can be added with the
-
-```bash
-cloudmesh inventory
-```
-
-command which allows us to easily manage service attribute names in a
-text yaml configuration file.
-
-### Deployment with the help of Nomad
-
-At one point we used Nomad for this project, but we have to point out
-that using NOmad for this project is unnecessary as Cloudmesh provides
-the ability to manage vms and can stroe them in a database and also in
-an inventory file. These features have been available before Nomad was 
-developed. 
-
-
-However, we also experimented with Nomad. Nomad is a cluster and
-resource management service primarily used for prototyping and is
-currently running on the HashiCorp ecosystem (Vagrant, Consul,
-Terraform, etc.) The primary use-case for nomad is quick protyping and
-rapid integration of new servers into a docker-based protocol.  One
-strong benefit of nomad is its job parameterization functions - allowing
-images to be rapidly deployed through the API based on a minimal set of
-constraints.
-
-Nomad is designed around a single software package which is to be
-installed on a Debian 9+ VM for optimal use.  [Nomad
-Installation](http://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/nomad/build.sh)
+Nomad is designed around a single software package which is to be installed on a Debian 9+ VM for optimal use.  [Nomad Installation](http://github.com/cloudmesh-community/fa19-516-153/tree/master/project/cloudmesh/images/nomad/build.sh)
 
 First, a nomad agent will be deployed:
 ```sh
@@ -436,32 +265,24 @@ nomad agent -server		# for cluster server agent
 ```
 This will ensure that nomad is running and searching for all peers in the network.
 
-If peers do not exist in the nomad network, the user must instruct the
-nomad agent to look for servers.  This can be controlled by the
-`-servers` option.
-
+If peers do not exist in the nomad network, the user must instruct the nomad agent to look for servers.  This can be controlled by the `-servers` option.
 ```sh
 nomad agent -{type} -servers "host1:port,host2:port,..."
 ```
 
- Once a nomad agent/cluster is generated, a jobfile must be deployed to
- this cluster.  This can be performed by running the command:
- 
+ Once a nomad agent/cluster is generated, a jobfile must be deployed to this cluster.  This can be performed by running the command:
  ```sh
  nomad job run JOBFILE_PATH						# if the cluster is locally held or the NOMAD_ADDR env variable is set OR
  nomad job run -address={addr} JOBFILE_PATH		# if the cluster is remotely held
  ```
 
-The nomad api can be easily accessed on a custom nomad port or the
-default port 4646.  This api will control all machines connected to the
-same cluster.
+The nomad api can be easily accessed on a custom nomad port or the default port 4646.  This api will control all machines connected to the same cluster.
 
 
 #### Deploying Hadoop to the Nomad Cluster
 
-The Hadoop ecosystem may be deployed to a nomad cluster using
-docker-based components. The following images will need to be built and
-deployed to a container repository or transferred to all nomad servers.
+The Hadoop ecosystem may be deployed to a nomad cluster using docker-based components.
+The following images will need to be built and deployed to a container repository or transferred to all nomad servers.
 
 ```sh
 cd ~/cloudmesh/images/hadoop

@@ -1,7 +1,7 @@
 #Referred https://github.com/big-data-europe/docker-hadoop/blob/master/submit/Dockerfile
 
 #Getting base hadoop image
-FROM bde2020/hadoop-base
+FROM bde2020/hadoop-base:2.0.0-hadoop3.2.1-java8
 
 #Copying the jar file to the required destination
 COPY WordCount.jar /opt/hadoop/applications/WordCount.jar
